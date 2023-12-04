@@ -57,11 +57,10 @@ public class Gun : MonoBehaviour
                     IDamageable damageable = hit.transform.GetComponent<IDamageable>();
                     damageable?.Damage(gunData.damage);
                     Destroy(laser, 2f);
+                    gunData.currentAmmo--;
+                    timeSinceLastShot = 0;
+                    OnGunShot();
                 }
-
-                gunData.currentAmmo--;
-                timeSinceLastShot = 0;
-                OnGunShot();
                 //Debug.Log("Current ammo: "+gunData.currentAmmo);    
             }
         }

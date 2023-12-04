@@ -6,6 +6,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     private float moveSpeed = 7;
+    private Animator animator;
+    private readonly Vector3 defaultCameraPos = new Vector3(0f, 1.878f, 0.3279991f);
 
     [Header("Movement")]
     public float walkSpeed;
@@ -40,6 +42,7 @@ public class Movement : MonoBehaviour
 
     Vector3 moveDirection;
     Rigidbody rb;
+    GameObject cameraPos;
 
     public MovementState state;
     public enum MovementState
@@ -49,6 +52,8 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        animator = GameObject.Find("PlayerCharacter").GetComponent<Animator>();
+        cameraPos = GameObject.Find("CameraPos");
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         canJump = true;
@@ -58,6 +63,7 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f, whatIsGround);
+        animator.SetBool("OnGround", grounded);
         MyInput();
         SpeedControl();
         StateHandler();
@@ -82,6 +88,7 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKeyDown(crouchKey))
         {
+            animator.SetBool("Crouch", true);
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
             // if we scale down the player's model, it will float in air. This is due to the fact that scaling
             // a model like this reduces the scale from both ends, towards the center. We add a little force
@@ -90,42 +97,59 @@ public class Movement : MonoBehaviour
         }
         if (Input.GetKeyUp(crouchKey))
         {
+            animator.SetBool("Crouch", false);
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
     }
 
     private void StateHandler()
     {
-        if (grounded)
+        // if the rigid body is not moving, we should set the animation parameter "Speed" to 0,
+        // otherwise we change it accordingly
+        if (rb.velocity.magnitude < 0.3f)
         {
-            if (Input.GetKey(sprintKey)) // if we're sprinting, that's the only thing we can do
+            animator.SetFloat("Speed", 0f);
+        }
+        else 
+        { 
+            if (grounded)
             {
-                //Debug.Log("Running");
-                state = MovementState.sprinting;
-                moveSpeed = sprintSpeed;
-            }
-            else // if we're not, we can either crouch or simply walk
-            {
-                if (Input.GetKey(crouchKey))
+                //cameraPos.transform.localPosition = defaultCameraPos;
+                animator.SetBool("OnGround", true);
+                if (Input.GetKey(sprintKey)) // if we're sprinting, that's the only thing we can do
                 {
-                    //Debug.Log("Crouching");
-                    state = MovementState.crouching;
-                    moveSpeed = crouchSpeed;
+                    //Debug.Log("Running");
+                    cameraPos.transform.localPosition = defaultCameraPos + new Vector3(0f, 0f, 0.2f);
+                    state = MovementState.sprinting;
+                    moveSpeed = sprintSpeed;
                 }
-                else
+                else // if we're not, we can either crouch or walk
                 {
-                    //Debug.Log("Walking");
-                    state = MovementState.walking;
-                    moveSpeed = walkSpeed;
-                }
+                    if (Input.GetKey(crouchKey))
+                    {
+                        //Debug.Log("Crouching");
+                        state = MovementState.crouching;
+                        moveSpeed = crouchSpeed;
+                    }
+                    else
+                    {
+                        //Debug.Log("Walking");
+                        cameraPos.transform.localPosition = defaultCameraPos + new Vector3(0f, 0f, 0.1f);
+                        state = MovementState.walking;
+                        moveSpeed = walkSpeed;
+                    }
                 
+                }
             }
+            else // if grounded is False, we are airborne
+            {
+                //Debug.Log("Airborne");
+                animator.SetBool("OnGround", false);
+                state = MovementState.airborne;
+            }
+            animator.SetFloat("Speed", Mathf.Ceil(moveSpeed / walkSpeed));
         }
-        else // if grounded is False, we are airborne
-        {
-            //Debug.Log("Airborne");
-            state = MovementState.airborne;
-        }
+        //Debug.Log(animator.GetFloat("Speed"));
     }
 
     private void MovePlayer()
