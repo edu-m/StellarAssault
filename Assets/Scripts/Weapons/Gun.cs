@@ -1,16 +1,22 @@
+using Assets.Scripts.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
-
     [Header("References")]
     [SerializeField] private GunData gunData;
-    [SerializeField] private Transform cam;
-    [SerializeField] private DisplayAmmo displayAmmo;
-    [SerializeField] public GameObject m_shotPrefab;
+    [SerializeField] private Transform muzzle;
+    [SerializeField] private GunSounds gunSounds;
+    public GameObject m_shotPrefab;
+    private DisplayAmmo displayAmmo;
+    private Slider reloadTimerSlider;
+    
+
+    readonly Vector3 UIElementReloadScale = new Vector3(0.1f, 0.1f, 0f);
 
     float timeSinceLastShot;
 
@@ -18,15 +24,37 @@ public class Gun : MonoBehaviour
     {
         displayAmmo = GameObject.Find("Canvas").GetComponent<DisplayAmmo>();
         PlayerShoot.shootInput += Shoot;
+        PlayerShoot.reloadInput += ShowUIElementReload;
         PlayerShoot.reloadInput += StartReload;
         displayAmmo.UpdateAmmo(gunData.currentAmmo,gunData.magSize);
+        reloadTimerSlider = GameObject.Find("Slider").GetComponent<Slider>();
     }
 
     private void OnDisable() => gunData.isReloading = false;
 
+    private void HideUIElementReload()
+    {
+        reloadTimerSlider.transform.localScale = new Vector3(0f, 0f, 0f);
+    }
+
+    private IEnumerator UpdateUIElementReload()
+    {
+        while ((reloadTimerSlider.value += 1f) < 75)
+            yield return new WaitForSeconds(gunData.reloadTime / 75);
+        Invoke("HideUIElementReload",0f);
+    }
+   
+    public void ShowUIElementReload()
+    {
+        reloadTimerSlider.transform.localScale = UIElementReloadScale;
+        reloadTimerSlider.value = 0;
+        StartCoroutine(UpdateUIElementReload());
+    }
+
     public void StartReload()
     {
         //Debug.Log("Reloading Weapon!");
+        gunSounds.PlayReloadSound();
         if (!gunData.isReloading && this.gameObject.activeSelf)
             StartCoroutine(Reload());
     }
@@ -49,22 +77,21 @@ public class Gun : MonoBehaviour
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(cam.position, cam.forward, out RaycastHit hit, gunData.maxDistance))
+                if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit, gunData.maxDistance))
                 {
-                    GameObject laser = Instantiate(m_shotPrefab, cam.position, cam.rotation);
+                    GameObject laser = Instantiate(m_shotPrefab, muzzle.position, muzzle.rotation);
                     laser.GetComponent<ShotBehavior>().setTarget(hit.point);
                     //TODO: random skew angle within crosshair
                     IDamageable damageable = hit.transform.GetComponent<IDamageable>();
                     damageable?.Damage(gunData.damage);
                     Destroy(laser, 2f);
-                    gunData.currentAmmo--;
-                    timeSinceLastShot = 0;
                     OnGunShot();
                 }
                 //Debug.Log("Current ammo: "+gunData.currentAmmo);    
             }
         }
-        else StartReload();
+        else PlayerShoot.reloadInput?.Invoke();
+
         displayAmmo.UpdateAmmo(gunData.currentAmmo,gunData.magSize);
     }
 
@@ -72,8 +99,12 @@ public class Gun : MonoBehaviour
     {
         timeSinceLastShot += Time.deltaTime;
 
-        //Debug.DrawRay(cam.position, cam.forward * gunData.maxDistance);
+        //Debug.DrawRay(muzzle.position, muzzle.forward * gunData.maxDistance);
     }
 
-    private void OnGunShot() { }
+    private void OnGunShot() {
+        gunData.currentAmmo--;
+        timeSinceLastShot = 0;
+        gunSounds.PlayShootSound();
+    }
 }

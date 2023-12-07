@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
     private float moveSpeed = 7;
     private Animator animator;
-    private readonly Vector3 defaultCameraPos = new Vector3(0f, 1.878f, 0.3279991f);
+    private readonly Vector3 defaultCameraPos = new (0f, 1.878f, 0.3279991f);
 
     [Header("Movement")]
     public float walkSpeed;

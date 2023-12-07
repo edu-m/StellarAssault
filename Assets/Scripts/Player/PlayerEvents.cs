@@ -10,8 +10,8 @@ public class PlayerEvent : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E))
         {
             Vector3 pos = transform.position;
-            pos.y += 3.5f;
-            Object.Instantiate(_object,pos,transform.rotation);
+            pos.y += 3f;
+            Instantiate(_object,pos,transform.rotation);
         }
     }
 }

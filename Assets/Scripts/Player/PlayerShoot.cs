@@ -25,9 +25,9 @@ public class PlayerShoot : MonoBehaviour
 
         if (Input.GetKeyDown(reloadKey))
         {
-            animator.SetBool("Reloading", true);
+            //animator.SetBool("Reloading", true);
             reloadInput?.Invoke();
-            animator.SetBool("Reloading", false);
+            //animator.SetBool("Reloading", false);
         }
 
     }

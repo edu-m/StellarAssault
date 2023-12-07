@@ -15,8 +15,8 @@ MonoBehaviour:
   name: Laser Rifle
   damage: 50
   maxDistance: 500
-  currentAmmo: 26
+  currentAmmo: 31
   magSize: 31
-  fireRate: 350
+  fireRate: 200
   reloadTime: 1.5
   isReloading: 0
