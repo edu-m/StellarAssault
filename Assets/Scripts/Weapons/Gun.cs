@@ -10,6 +10,7 @@ public class Gun : MonoBehaviour
     [Header("References")]
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform muzzle;
+    [SerializeField] private Transform cameraPosMuzzle;
     [SerializeField] private GunSounds gunSounds;
     public GameObject m_shotPrefab;
     private DisplayAmmo displayAmmo;
@@ -42,6 +43,7 @@ public class Gun : MonoBehaviour
         while ((reloadTimerSlider.value += 1f) < 75)
             yield return new WaitForSeconds(gunData.reloadTime / 75);
         Invoke("HideUIElementReload",0f);
+        gunData.isReloading = false;
     }
    
     public void ShowUIElementReload()
@@ -65,7 +67,7 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(gunData.reloadTime);
         gunData.currentAmmo = gunData.magSize;
         displayAmmo.UpdateAmmo(gunData.currentAmmo, gunData.magSize);
-        gunData.isReloading = false;
+        
     }
 
     private bool CanShoot() => !gunData.isReloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
@@ -77,7 +79,7 @@ public class Gun : MonoBehaviour
         {
             if (CanShoot())
             {
-                if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit, gunData.maxDistance))
+                if (Physics.Raycast(cameraPosMuzzle.position, cameraPosMuzzle.forward, out RaycastHit hit, gunData.maxDistance))
                 {
                     GameObject laser = Instantiate(m_shotPrefab, muzzle.position, muzzle.rotation);
                     laser.GetComponent<ShotBehavior>().setTarget(hit.point);
@@ -87,11 +89,10 @@ public class Gun : MonoBehaviour
                     Destroy(laser, 2f);
                     OnGunShot();
                 }
-                //Debug.Log("Current ammo: "+gunData.currentAmmo);    
             }
+            if(gunData.currentAmmo == 0) PlayerShoot.reloadInput?.Invoke();
         }
-        else PlayerShoot.reloadInput?.Invoke();
-
+        
         displayAmmo.UpdateAmmo(gunData.currentAmmo,gunData.magSize);
     }
 
@@ -99,7 +100,7 @@ public class Gun : MonoBehaviour
     {
         timeSinceLastShot += Time.deltaTime;
 
-        //Debug.DrawRay(muzzle.position, muzzle.forward * gunData.maxDistance);
+        Debug.DrawRay(muzzle.position, muzzle.forward * gunData.maxDistance);
     }
 
     private void OnGunShot() {

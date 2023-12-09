@@ -29,6 +29,7 @@ public class Movement : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
+    public KeyCode rollKey = KeyCode.LeftAlt;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -131,6 +132,10 @@ public class Movement : MonoBehaviour
                         state = MovementState.crouching;
                         moveSpeed = crouchSpeed;
                     }
+                    //else if(Input.GetKey(rollKey))
+                    //{
+                    //    animator.SetBool("Roll", true);
+                    //}
                     else
                     {
                         //Debug.Log("Walking");
@@ -147,7 +152,7 @@ public class Movement : MonoBehaviour
                 animator.SetBool("OnGround", false);
                 state = MovementState.airborne;
             }
-            animator.SetFloat("Speed", Mathf.Ceil(moveSpeed / walkSpeed));
+            animator.SetFloat("Speed", Mathf.Ceil(moveSpeed / walkSpeed)); // not necessary, just nicer since it's going to be 1-2
         }
         //Debug.Log(animator.GetFloat("Speed"));
     }
@@ -156,9 +161,9 @@ public class Movement : MonoBehaviour
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
         if(grounded)    
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
         else if(!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            rb.AddForce(10f * airMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Force);
     }
 
     private void SpeedControl()
