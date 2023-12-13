@@ -23,6 +23,7 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
+        gunData.currentAmmo = gunData.magSize;
         displayAmmo = GameObject.Find("Canvas").GetComponent<DisplayAmmo>();
         PlayerShoot.shootInput += Shoot;
         PlayerShoot.reloadInput += ShowUIElementReload;
@@ -48,6 +49,8 @@ public class Gun : MonoBehaviour
    
     public void ShowUIElementReload()
     {
+        if (gunData.currentAmmo == gunData.magSize)
+            return;
         reloadTimerSlider.transform.localScale = UIElementReloadScale;
         reloadTimerSlider.value = 0;
         StartCoroutine(UpdateUIElementReload());
@@ -56,9 +59,11 @@ public class Gun : MonoBehaviour
     public void StartReload()
     {
         //Debug.Log("Reloading Weapon!");
-        gunSounds.PlayReloadSound();
-        if (!gunData.isReloading && this.gameObject.activeSelf)
+        if (!gunData.isReloading && this.gameObject.activeSelf && gunData.currentAmmo < gunData.magSize)
+        {
+            gunSounds.PlayReloadSound();
             StartCoroutine(Reload());
+        }
     }
 
     private IEnumerator Reload()
@@ -100,7 +105,7 @@ public class Gun : MonoBehaviour
     {
         timeSinceLastShot += Time.deltaTime;
 
-        Debug.DrawRay(muzzle.position, muzzle.forward * gunData.maxDistance);
+        //Debug.DrawRay(muzzle.position, muzzle.forward * gunData.maxDistance);
     }
 
     private void OnGunShot() {

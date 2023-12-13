@@ -63,7 +63,7 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f, whatIsGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.25f, whatIsGround);
         animator.SetBool("OnGround", grounded);
         MyInput();
         SpeedControl();
@@ -96,12 +96,14 @@ public class Movement : MonoBehaviour
             // to quickly push the player back to the ground.
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
-        if (Input.GetKeyUp(crouchKey))
+        if (!Input.GetKey(crouchKey) && CanUncrouch())
         {
             animator.SetBool("Crouch", false);
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
     }
+
+    private bool CanUncrouch() => !Physics.Raycast(transform.position, Vector3.up, playerHeight * 1.1f);
 
     private void StateHandler()
     {
@@ -132,10 +134,6 @@ public class Movement : MonoBehaviour
                         state = MovementState.crouching;
                         moveSpeed = crouchSpeed;
                     }
-                    //else if(Input.GetKey(rollKey))
-                    //{
-                    //    animator.SetBool("Roll", true);
-                    //}
                     else
                     {
                         //Debug.Log("Walking");
