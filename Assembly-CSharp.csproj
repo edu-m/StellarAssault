@@ -62,8 +62,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Objects\LockedDoor.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponSway.cs" />
-    <Compile Include="Assets\CustomPrefabs\Soldiers\EnemyBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Game\Sounds\SoundManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventHandler.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyData.cs" />
     <Compile Include="Assets\Scripts\UI\DisplayAmmo.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\VolumetricMultiLineBehavior.cs" />
@@ -71,10 +72,12 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerCam.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EnemyBehaviour.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineStripBehavior.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\Scripts\Game\Sounds\VolumeSettings.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
@@ -119,6 +122,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Objects\Door.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Game\Sounds\MusicManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerEvents.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineVertexData.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />
