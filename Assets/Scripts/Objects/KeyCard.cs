@@ -9,6 +9,7 @@ public class KeyCard : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter()
     {
+        Debug.Log("On Enter Keycard Collision");
         PlayerData.SetKeyCard(true);
         keyCard.SetActive(false);
     }

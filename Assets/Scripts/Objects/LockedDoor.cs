@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class LockedDoor : MonoBehaviour
 {
-
     [SerializeField] GameObject door;
 
     Animator animator;
@@ -18,8 +17,8 @@ public class LockedDoor : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter()
     {
-
-        animator.SetBool("character_nearby", true);
+        if(PlayerData.HasKeyCard())
+            animator.SetBool("character_nearby", true);
     }
     private void OnTriggerExit()
     {

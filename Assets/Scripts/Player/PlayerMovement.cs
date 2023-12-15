@@ -95,8 +95,8 @@ public class Movement : MonoBehaviour
     private Vector3 GetSlopeMoveDirection()
     {
         // we can use this to find the angle of the movement direction vector,
-        // as it's going to be ortogonal in respect to the normal vector
-        // since this is a versor we normalize it
+        // as it's going to be orthogonal in respect to the normal vector
+        // p.s. since this is a versor we must normalize it
         /*
          * ^ 
          * | ^ this is the slopeHit normal
@@ -204,7 +204,7 @@ public class Movement : MonoBehaviour
         }
         if(grounded)    
             rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
-        else if(!grounded)
+        else
             rb.AddForce(10f * airMultiplier * moveSpeed * moveDirection.normalized, ForceMode.Force);
     }
 
