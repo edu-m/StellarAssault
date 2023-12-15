@@ -36,6 +36,11 @@ public class Movement : MonoBehaviour
     public LayerMask whatIsGround;
     bool grounded;
 
+    [Header("Slope Handling")]
+    public float maxSlopeAngle;
+    private RaycastHit slopeHit;
+    private bool exitingSlope;
+
     public Transform orientation;
 
     float horizontalInput;
@@ -75,6 +80,32 @@ public class Movement : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+    }
+
+    private bool OnSlope()
+    {
+        if (Physics.Raycast(transform.position,Vector3.down, out slopeHit, playerHeight *0.5f + 0.3f))
+        {
+            float angle = Vector3.Angle(Vector3.up,slopeHit.normal);
+            return angle < maxSlopeAngle && angle != 0;
+        }
+        return false;
+    }
+
+    private Vector3 GetSlopeMoveDirection()
+    {
+        // we can use this to find the angle of the movement direction vector,
+        // as it's going to be ortogonal in respect to the normal vector
+        // since this is a versor we normalize it
+        /*
+         * ^ 
+         * | ^ this is the slopeHit normal
+         * | |
+         * | O--> this is the projected vector
+         * |
+         * +---------------->
+         */
+        return Vector3.ProjectOnPlane(moveDirection, slopeHit.normal).normalized;
     }
 
     private void MyInput()
@@ -158,6 +189,19 @@ public class Movement : MonoBehaviour
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        // we have to disable the player's rigid body's gravity in order to keep the player in a constant position
+        // otherwise it would slide down and fall to the start of the slope. The gravity will automatically switch back
+        // as soon as we're out of the slope
+        rb.useGravity = !OnSlope();
+
+        if (OnSlope() && !exitingSlope)
+        { 
+            rb.AddForce(GetSlopeMoveDirection() * 20f * moveSpeed, ForceMode.Force); 
+            // since we are on a slope and therefore gravity has been deactivated we should also push the player in order
+            // to avoid it from "bouncing"
+            if(rb.velocity.y > 0f)
+                rb.AddForce(Vector3.down *80f,ForceMode.Force);
+        }
         if(grounded)    
             rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
         else if(!grounded)
@@ -166,16 +210,28 @@ public class Movement : MonoBehaviour
 
     private void SpeedControl()
     {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        if(flatVel.magnitude > moveSpeed)
+        // to handle slopes correctly we have to account for the fact that traveling at a constant speed 
+        // does not guarantee a constant speed on slopes. This is because on a slope, for each step we take
+        // we actually travel a greater distance
+        if(OnSlope() && !exitingSlope)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x,rb.velocity.y,limitedVel.z);
+            if(rb.velocity.magnitude > moveSpeed)
+                rb.velocity = rb.velocity.normalized * moveSpeed;
+        }
+        else
+        {
+            Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+            if (flatVel.magnitude > moveSpeed)
+            {
+                Vector3 limitedVel = flatVel.normalized * moveSpeed;
+                rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            }
         }
     }
 
     private void Jump()
     {
+        exitingSlope = true;
         rb.velocity = new Vector3(rb.velocity.x,0f,rb.velocity.z);
         rb.AddForce(transform.up * jumpForce,ForceMode.Impulse);
     }
@@ -183,5 +239,6 @@ public class Movement : MonoBehaviour
     private void ResetJump()
     {
         canJump = true;
+        exitingSlope = false;
     }
 }

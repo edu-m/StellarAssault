@@ -8,35 +8,31 @@ public class EnemyManager : MonoBehaviour
     List<GameObject> enemyList;
     [SerializeField] int enemyListCount;
     [SerializeField] List<Transform> spawnPointList;
-    [SerializeField] int spawnPointCount;
+    //[SerializeField] int spawnPointCount;
     [SerializeField] float timeToSpawn;
     // Start is called before the first frame update
-    private void Awake()
+    public void Start()
     {
-        enemyList = new List<GameObject>();
-        spawnPointList = new List<Transform>();
+        enemyList = new List<GameObject>(enemyListCount);
+        //spawnPointList = new List<Transform>(spawnPointCount);
 
-
-        for (int i=0;i<enemyListCount;i++)
+        for (int i = 0; i < enemyListCount; i++)
         {
-            enemyList[i] = Instantiate(enemy, spawnPointList[Random.Range(0,spawnPointCount)].position, spawnPointList[Random.Range(0,spawnPointCount)].rotation);
+            Transform randomSpawnPoint = spawnPointList[Random.Range(0, spawnPointList.Count)];
+            GameObject tempEnemy = Instantiate(enemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
+            enemyList.Add(tempEnemy);
             enemyList[i].SetActive(false);
         }
     }
 
     IEnumerator SpawnEnemies()
-    {   
-        for (int i=0; i<enemyListCount;i++) 
-        {
-            enemyList[i].SetActive(true);
-        }
+    {
+        if(enemyList.Count > 0)
+            for (int i = 0; i < enemyListCount; i++)
+                enemyList[i].SetActive(true);
         yield return new WaitForSeconds(timeToSpawn);
     }
-    
-    void Start()
-    {
-        
-    }
+
 
     // Update is called once per frame
     void Update()

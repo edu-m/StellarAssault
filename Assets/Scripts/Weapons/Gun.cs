@@ -24,7 +24,7 @@ public class Gun : MonoBehaviour
     private void Start()
     {
         gunData.currentAmmo = gunData.magSize;
-        displayAmmo = GameObject.Find("Canvas").GetComponent<DisplayAmmo>();
+        displayAmmo = GameObject.Find("CrosshairCanvas").GetComponent<DisplayAmmo>();
         PlayerShoot.shootInput += Shoot;
         PlayerShoot.reloadInput += ShowUIElementReload;
         PlayerShoot.reloadInput += StartReload;
