@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2330034196065550380}
   - component: {fileID: 1843412567306185288}
   - component: {fileID: 2275050535457978582}
+  - component: {fileID: 3516448379119335838}
+  - component: {fileID: 7789682642121471253}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -42,7 +44,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5302268927449103356}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c514088eac3f6f54d8a41ee81fd537e3, type: 3}
   m_Name: 
@@ -81,10 +83,46 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.2
+  m_Radius: 0.6
+  m_Height: 2.5
   m_Direction: 1
-  m_Center: {x: 0, y: -1, z: 0.53}
+  m_Center: {x: -0.12, y: -1, z: 0.53}
+--- !u!195 &3516448379119335838
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302268927449103356}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.61
+  m_Speed: 1
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.68
+  m_BaseOffset: 1.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &7789682642121471253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302268927449103356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc5fd28cce3a5347a02682e55563645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 3516448379119335838}
+  target: {fileID: 0}
 --- !u!1001 &531063867213719189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,6 +174,10 @@ PrefabInstance:
     - target: {fileID: 585091204879156923, guid: 48d398df4739e0b49a9383ef88e5b981, type: 3}
       propertyPath: m_Name
       value: EnemySoldier
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054546895787829147, guid: 48d398df4739e0b49a9383ef88e5b981, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
