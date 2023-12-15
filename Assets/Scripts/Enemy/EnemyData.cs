@@ -8,6 +8,14 @@ public class EnemyData : MonoBehaviour, IDamageable
     private ParticleSystem ps;
     
     [SerializeField] public float health;
+    
+
+    public void Spawn(Transform spawnPoint)
+    {
+        transform.position = spawnPoint.position;
+        transform.rotation = spawnPoint.rotation;
+        gameObject.SetActive(true);
+    }
     public void Damage(float damage)
     {
         health -= damage;
