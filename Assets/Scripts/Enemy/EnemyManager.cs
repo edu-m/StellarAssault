@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
     List<GameObject> enemyList;
     [SerializeField] int enemyListCount;
     [SerializeField] List<Transform> spawnPointList;
+    [SerializeField] List<Transform> destinationPointList;
     //[SerializeField] int spawnPointCount;
     [SerializeField] float timeToSpawn;
     // Start is called before the first frame update
@@ -22,7 +23,10 @@ public class EnemyManager : MonoBehaviour
             Transform randomSpawnPoint = spawnPointList[random];
             GameObject tempEnemy = Instantiate(enemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
             enemyList.Add(tempEnemy);
-            enemyList[i].GetComponent<Move>().target = spawnPointList[(random + 1) % spawnPointList.Count];
+            enemyList[i].GetComponent<Move>().goBackTarget = spawnPointList[random]; 
+            //Debug.Log("Go Back "+enemyList[i].GetComponent<Move>().goBackTarget);
+            enemyList[i].GetComponent<Move>().destinationTarget = destinationPointList[random];
+            //Debug.Log("destination "+enemyList[i].GetComponent<Move>().destinationTarget);
             enemyList[i].SetActive(false);
            }
     }

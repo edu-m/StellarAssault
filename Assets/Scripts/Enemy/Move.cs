@@ -18,14 +18,14 @@ public class Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent.destination = destinationTarget.position;
+        Debug.Log("Parto da " + goBackTarget + " verso " + destinationTarget);
+        GoToTarget(destinationTarget);
     }
 
     // Update is called once per frame
     void Update()
     {
-        OnTriggerEnter(destinationTarget.GetComponent<Collider>());
-        yield return OnTriggerEnter()
+        StartCoroutine(FollowPath());
     }
 
     public void GoToTarget(Transform target)
@@ -33,15 +33,26 @@ public class Move : MonoBehaviour
         agent.destination = target.position;
     }
 
+    IEnumerator FollowPath()
+    {
+        yield return new WaitForSeconds(2);
+        OnTriggerEnter(destinationTarget.GetComponent<Collider>());
+        Debug.Log("Arrivato a " + destinationTarget+" torno a "+goBackTarget);
+        yield return new WaitForSeconds(2);
+        OnTriggerEnter(goBackTarget.GetComponent<Collider>());
+        Debug.Log("Arrivo a " + goBackTarget+" torno a "+destinationTarget);
+        
+    }
     public void OnTriggerEnter(Collider other)
     {
-        if (other.tag.Equals("checkPoint"))
+        if (other.tag.Equals("SpawnPoint"))
         {
-            GoToTarget(other.transform);
+            GoToTarget(destinationTarget);
+        }
+        else if (other.tag.Equals("checkPoint"))
+        {
+            GoToTarget(goBackTarget);
         }
     }
-    IEnumerator GoBack()
-    {
-        yield return OnTriggerEnter();
-    }
+  
 }
