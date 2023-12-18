@@ -29,7 +29,7 @@ public class Gun : MonoBehaviour
         PlayerShoot.reloadInput += ShowUIElementReload;
         PlayerShoot.reloadInput += StartReload;
         displayAmmo.UpdateAmmo(gunData.currentAmmo,gunData.magSize);
-        reloadTimerSlider = GameObject.Find("Slider").GetComponent<Slider>();
+        reloadTimerSlider = GameObject.Find("ReloadTimerSlider").GetComponent<Slider>();
     }
 
     private void OnDisable() => gunData.isReloading = false;
@@ -75,29 +75,21 @@ public class Gun : MonoBehaviour
         
     }
 
-    private bool CanShoot() => !gunData.isReloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
+    private bool CanShoot() => !gunData.isReloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f) && gunData.currentAmmo > 0;
 
     private void Shoot()
     {
-        //Debug.Log("Shoot");
-        if (gunData.currentAmmo > 0)
+        if (CanShoot() && Physics.Raycast(cameraPosMuzzle.position, cameraPosMuzzle.forward, out RaycastHit hit, gunData.maxDistance))
         {
-            if (CanShoot())
-            {
-                if (Physics.Raycast(cameraPosMuzzle.position, cameraPosMuzzle.forward, out RaycastHit hit, gunData.maxDistance))
-                {
-                    GameObject laser = Instantiate(m_shotPrefab, muzzle.position, muzzle.rotation);
-                    laser.GetComponent<ShotBehavior>().setTarget(hit.point);
-                    //TODO: random skew angle within crosshair
-                    IDamageable damageable = hit.transform.GetComponent<IDamageable>();
-                    damageable?.Damage(gunData.damage);
-                    Destroy(laser, 2f);
-                    OnGunShot();
-                }
-            }
-            if(gunData.currentAmmo == 0) PlayerShoot.reloadInput?.Invoke();
+            GameObject laser = Instantiate(m_shotPrefab, muzzle.position, muzzle.rotation);
+            laser.GetComponent<ShotBehavior>().setTarget(hit.point);
+            //TODO: random skew angle within crosshair
+            IDamageable damageable = hit.transform.GetComponent<IDamageable>();
+            damageable?.Damage(gunData.damage);
+            Destroy(laser, 2f);
+            OnGunShot();
         }
-        
+        if(gunData.currentAmmo == 0) PlayerShoot.reloadInput?.Invoke();
         displayAmmo.UpdateAmmo(gunData.currentAmmo,gunData.magSize);
     }
 

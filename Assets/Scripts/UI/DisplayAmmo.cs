@@ -10,7 +10,7 @@ public class DisplayAmmo : MonoBehaviour
 
     private void Start()
     {
-        ammoText.text = "hello world!";
+        //ammoText.text = "hello world!";
     }
     public void UpdateAmmo(int ammo, int maxAmmo)
     {
