@@ -486,8 +486,9 @@ GameObject:
   - component: {fileID: 1684989876933354802}
   - component: {fileID: 570473551135366049}
   - component: {fileID: 5831748067424252812}
+  - component: {fileID: 4828883011016417411}
   m_Layer: 0
-  m_Name: EnemySoldierFinal
+  m_Name: EnemySoldierFinal 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1502,7 +1503,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 5
+        scalar: 15
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -5484,3 +5485,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySoldier: {fileID: 8166176590462582702}
   speed: 0.5
+--- !u!114 &4828883011016417411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8166176590462582702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e68ea3e5cf4d5d84a8efc7a0a8834946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100

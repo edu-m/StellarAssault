@@ -18,6 +18,7 @@ public class EnemyData : MonoBehaviour, IDamageable
     }
     public void Damage(float damage)
     {
+        Debug.Log("Damage");
         health -= damage;
         if (health <= 0)
             DeathEvent();
@@ -41,9 +42,9 @@ public class EnemyData : MonoBehaviour, IDamageable
     // Start is called before the first frame update
     void Start()
     {
-        ps = GameObject.Find("EnemySoldier").GetComponent<ParticleSystem>();
+        ps = GetComponent<ParticleSystem>();
         //ps.gameObject.SetActive(false);
-        animator = GameObject.Find("EnemySoldier").GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
 }
