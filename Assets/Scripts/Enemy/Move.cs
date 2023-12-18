@@ -35,22 +35,24 @@ public class Move : MonoBehaviour
 
     IEnumerator FollowPath()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitUntil(()=>destinationTarget.GetComponent<BoxCollider>().isTrigger);
         OnTriggerEnter(destinationTarget.GetComponent<Collider>());
-        Debug.Log("Arrivato a " + destinationTarget+" torno a "+goBackTarget);
-        yield return new WaitForSeconds(2);
+        Debug.Log("Primo Arrivato a " + destinationTarget+" torno a "+goBackTarget);
+        yield return new WaitUntil(() => goBackTarget.GetComponent<BoxCollider>().isTrigger);
         OnTriggerEnter(goBackTarget.GetComponent<Collider>());
-        Debug.Log("Arrivo a " + goBackTarget+" torno a "+destinationTarget);
+        Debug.Log("Secondo Arrivo a " + goBackTarget+" torno a "+destinationTarget);
         
     }
     public void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("SpawnPoint"))
         {
+            Debug.Log("Vai");
             GoToTarget(destinationTarget);
         }
         else if (other.tag.Equals("checkPoint"))
         {
+            Debug.Log("Torna");
             GoToTarget(goBackTarget);
         }
     }

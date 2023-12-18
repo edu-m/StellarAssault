@@ -5485,7 +5485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySoldier: {fileID: 8166176590462582702}
-  speed: 0.5
+  speed: 0.2
 --- !u!114 &4828883011016417411
 MonoBehaviour:
   m_ObjectHideFlags: 0
