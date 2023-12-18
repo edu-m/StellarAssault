@@ -487,6 +487,7 @@ GameObject:
   - component: {fileID: 570473551135366049}
   - component: {fileID: 5831748067424252812}
   - component: {fileID: 4828883011016417411}
+  - component: {fileID: 8635137201420369518}
   m_Layer: 0
   m_Name: EnemySoldierFinal 1
   m_TagString: Untagged
@@ -5498,3 +5499,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &8635137201420369518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8166176590462582702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc5fd28cce3a5347a02682e55563645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 6388615615243614280}
+  target: {fileID: 0}

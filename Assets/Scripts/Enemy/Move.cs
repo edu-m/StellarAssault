@@ -6,8 +6,9 @@ using UnityEngine.AI;
 public class Move : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Transform target;
+    [SerializeField] public Transform target;
 
+    
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
