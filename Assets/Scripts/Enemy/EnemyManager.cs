@@ -7,8 +7,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] GameObject enemy;
     List<GameObject> enemyList;
     [SerializeField] int enemyListCount;
-    [SerializeField] List<Transform> spawnPointList;
-    [SerializeField] List<Transform> destinationPointList;
+    [SerializeField] List<Transform> checkPointList;
     //[SerializeField] int spawnPointCount;
     [SerializeField] float timeToSpawn;
     // Start is called before the first frame update
@@ -19,14 +18,13 @@ public class EnemyManager : MonoBehaviour
  
         for (int i = 0; i < enemyListCount; i++)
         {
-            int random = Random.Range(0, spawnPointList.Count);
-            Transform randomSpawnPoint = spawnPointList[random];
-            GameObject tempEnemy = Instantiate(enemy, randomSpawnPoint.position, randomSpawnPoint.rotation);
+            int random = Random.Range(0, checkPointList.Count);
+            Transform pointA = checkPointList[random];
+            Transform pointB = checkPointList[(random + 1) % checkPointList.Count];
+            GameObject tempEnemy = Instantiate(enemy, pointA.position, pointA.rotation);
             enemyList.Add(tempEnemy);
-            enemyList[i].GetComponent<Move>().goBackTarget = spawnPointList[random]; 
-            //Debug.Log("Go Back "+enemyList[i].GetComponent<Move>().goBackTarget);
-            enemyList[i].GetComponent<Move>().destinationTarget = destinationPointList[random];
-            //Debug.Log("destination "+enemyList[i].GetComponent<Move>().destinationTarget);
+            enemyList[i].GetComponent<Move>().pointA = pointA; 
+            enemyList[i].GetComponent<Move>().pointB = pointB;
             enemyList[i].SetActive(false);
            }
     }
@@ -37,7 +35,6 @@ public class EnemyManager : MonoBehaviour
             for (int i = 0; i < enemyListCount; i++)
             {
                 enemyList[i].SetActive(true);
-
             }
         yield return new WaitForSeconds(timeToSpawn);
     }

@@ -8,58 +8,32 @@ using static UnityEngine.GraphicsBuffer;
 public class Move : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
-    public Transform destinationTarget;
-    public Transform goBackTarget;
-
+    public Transform pointA;
+    public Transform pointB;
+    private bool MoveBack;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        destinationTarget.GetComponent<BoxCollider>().isTrigger = true;
-        goBackTarget.GetComponent<BoxCollider>().isTrigger = true;
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        Debug.Log("Parto da " + goBackTarget + " verso " + destinationTarget);
-        GoToTarget(destinationTarget);
-    }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        StartCoroutine(FollowPath());
-    }
-
-    public void GoToTarget(Transform target)
-    {
-        
-        agent.destination = target.position;
-    }
-
-    IEnumerator FollowPath()
-    {
-        yield return new WaitWhile(()=>destinationTarget.GetComponent<BoxCollider>().isTrigger);
-        OnTriggerEnter(destinationTarget.GetComponent<Collider>());
-        Debug.Log("Primo Arrivato a " + destinationTarget+" torno a "+goBackTarget);
-        yield return new WaitWhile(() => goBackTarget.GetComponent<BoxCollider>().isTrigger);
-        OnTriggerEnter(goBackTarget.GetComponent<Collider>());
-        Debug.Log("Secondo Arrivo a " + goBackTarget+" torno a "+destinationTarget);
-        
-    }
-    public void OnTriggerEnter(Collider other)
-    {
-       
-        if (other.tag.Equals("SpawnPoint"))
+        if (MoveBack)
         {
-            Debug.Log("Vai");
-            GoToTarget(destinationTarget);
+            agent.SetDestination(pointB.position);
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                 agent.SetDestination(pointA.position);
+                 MoveBack = false;
+            }
         }
-        else if (other.tag.Equals("checkPoint"))
+        else
         {
-            Debug.Log("Torna");
-            GoToTarget(goBackTarget);
+            agent.SetDestination(pointA.position);
+            if (agent.remainingDistance <= agent.stoppingDistance)
+                MoveBack = true;
         }
     }
-  
 }
