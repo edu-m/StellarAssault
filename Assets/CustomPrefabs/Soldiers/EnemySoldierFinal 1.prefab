@@ -483,10 +483,10 @@ GameObject:
   - component: {fileID: 8099702352745139701}
   - component: {fileID: 2494578786874627709}
   - component: {fileID: 6388615615243614280}
-  - component: {fileID: 1684989876933354802}
   - component: {fileID: 570473551135366049}
   - component: {fileID: 5831748067424252812}
   - component: {fileID: 4828883011016417411}
+  - component: {fileID: 4635455860163665166}
   m_Layer: 0
   m_Name: EnemySoldierFinal 1
   m_TagString: Untagged
@@ -550,7 +550,7 @@ MeshCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
@@ -5434,21 +5434,6 @@ NavMeshAgent:
   m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1684989876933354802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8166176590462582702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc5fd28cce3a5347a02682e55563645, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 6388615615243614280}
-  destinationTarget: {fileID: 0}
-  goBackTarget: {fileID: 0}
 --- !u!136 &570473551135366049
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5499,3 +5484,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &4635455860163665166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8166176590462582702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc5fd28cce3a5347a02682e55563645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 6388615615243614280}
+  destinationTarget: {fileID: 0}
+  goBackTarget: {fileID: 0}

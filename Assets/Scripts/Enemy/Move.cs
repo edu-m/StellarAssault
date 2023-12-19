@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Move : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Move : MonoBehaviour
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        destinationTarget.GetComponent<BoxCollider>().isTrigger = true;
+        goBackTarget.GetComponent<BoxCollider>().isTrigger = true;
     }
     // Start is called before the first frame update
     void Start()
@@ -30,21 +33,23 @@ public class Move : MonoBehaviour
 
     public void GoToTarget(Transform target)
     {
+        
         agent.destination = target.position;
     }
 
     IEnumerator FollowPath()
     {
-        yield return new WaitUntil(()=>destinationTarget.GetComponent<BoxCollider>().isTrigger);
+        yield return new WaitWhile(()=>destinationTarget.GetComponent<BoxCollider>().isTrigger);
         OnTriggerEnter(destinationTarget.GetComponent<Collider>());
         Debug.Log("Primo Arrivato a " + destinationTarget+" torno a "+goBackTarget);
-        yield return new WaitUntil(() => goBackTarget.GetComponent<BoxCollider>().isTrigger);
+        yield return new WaitWhile(() => goBackTarget.GetComponent<BoxCollider>().isTrigger);
         OnTriggerEnter(goBackTarget.GetComponent<Collider>());
         Debug.Log("Secondo Arrivo a " + goBackTarget+" torno a "+destinationTarget);
         
     }
     public void OnTriggerEnter(Collider other)
     {
+       
         if (other.tag.Equals("SpawnPoint"))
         {
             Debug.Log("Vai");

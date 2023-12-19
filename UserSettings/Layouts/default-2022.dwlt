@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 770.4
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Scene
   m_RootView: {fileID: 3}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 725.60004
     height: 520
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -268,14 +268,14 @@ MonoBehaviour:
     y: 520
     width: 1172.8
     height: 200.40002
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 17}
   - {fileID: 18}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -472,9 +472,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 06fbffff
-      m_LastClickedID: -1274
-      m_ExpandedIDs: 08fbffff58930000669f0000
+      m_SelectedIDs: a4bdffff
+      m_LastClickedID: -16988
+      m_ExpandedIDs: 3ae0ffff24fbffff0e9300001c9f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: EnemySoldierFinal 1(Clone)
@@ -485,7 +485,7 @@ MonoBehaviour:
           y: 0
           width: 0
           height: 0
-        m_UserData: -4212
+        m_UserData: -15636
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 0
@@ -841,9 +841,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 10.848619, y: 4.310425, z: 51.60098}
+    m_Target: {x: 9.7803955, y: 8.655354, z: 77.73339}
     speed: 2
-    m_Value: {x: 5.243017, y: 2.6757069, z: 25.64216}
+    m_Value: {x: 9.7803955, y: 8.655354, z: 77.73339}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -889,13 +889,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.034792326, y: 0.5781983, z: 0.024289941, w: -0.8149598}
+    m_Target: {x: 0.3047163, y: 0.3792351, z: -0.13366291, w: 0.863562}
     speed: 2
-    m_Value: {x: 0.034787573, y: 0.57811934, z: 0.024286624, w: -0.8148485}
+    m_Value: {x: 0.31108907, y: 0.38320443, z: -0.13869533, w: 0.85856944}
   m_Size:
-    m_Target: 0.8660254
+    m_Target: 27.485012
     speed: 2
-    m_Value: 26.30912
+    m_Value: 27.485012
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -965,7 +965,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Enemy
+    - Assets/CustomPrefabs/Soldiers
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -973,16 +973,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Scripts/Enemy
+  - Assets/CustomPrefabs/Soldiers
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\Users\mazzo\source\repos\StellarHeist
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 492.59998}
-    m_SelectedIDs: 7ead0000
-    m_LastClickedID: 44414
-    m_ExpandedIDs: 00000000fcac0000feac000000ad000002ad000004ad000006ad000008ad00000aad00000cad000000ca9a3b
+    scrollPos: {x: 0, y: 72.599976}
+    m_SelectedIDs: 12ad0000
+    m_LastClickedID: 44306
+    m_ExpandedIDs: 00000000bcac0000beac0000c0ac0000c2ac0000c4ac0000c6ac0000c8ac0000caac0000ccac000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1010,7 +1010,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000fcac0000feac000000ad000002ad000004ad000006ad000008ad00000aad00000cad0000
+    m_ExpandedIDs: 00000000bcac0000beac0000c0ac0000c2ac0000c4ac0000c6ac0000c8ac0000caac0000ccac0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1035,8 +1035,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 326b0000
+    m_LastClickedInstanceID: 27442
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -1062,7 +1062,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 13.599976}
     m_GridSize: 96
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 207
@@ -1087,9 +1087,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 658.5
-    width: 1465.5
-    height: 332.5
+    y: 596
+    width: 1171.8
+    height: 179.40002
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
