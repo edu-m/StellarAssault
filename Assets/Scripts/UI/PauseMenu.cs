@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public GameObject crosshairCanvas;
     public GameObject pauseMenu;
     public static bool isPaused;
     public GameObject settingsMenu;
@@ -35,6 +36,8 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        Cursor.lockState = CursorLockMode.None; // buttons don't work without this
+        crosshairCanvas.SetActive(false);
         cameraHolder.SetActive(false);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
@@ -43,6 +46,8 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        crosshairCanvas.SetActive(true);
         cameraHolder.SetActive(true);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
