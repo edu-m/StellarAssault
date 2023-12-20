@@ -20,14 +20,17 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButton(0))
-            shootInput?.Invoke();
-
-        if (Input.GetKeyDown(reloadKey))
+        if (!PauseMenu.isPaused)
         {
-            //animator.SetBool("Reloading", true);
-            reloadInput?.Invoke();
-            //animator.SetBool("Reloading", false);
+            if (Input.GetMouseButton(0))
+                shootInput?.Invoke();
+
+            if (Input.GetKeyDown(reloadKey))
+            {
+                //animator.SetBool("Reloading", true);
+                reloadInput?.Invoke();
+                //animator.SetBool("Reloading", false);
+            }
         }
 
     }
