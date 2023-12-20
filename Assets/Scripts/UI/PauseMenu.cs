@@ -7,10 +7,14 @@ public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public static bool isPaused;
+    public GameObject settingsMenu;
+    public GameObject cameraHolder;
     // Start is called before the first frame update
     void Start()
     {
         pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        cameraHolder.SetActive(true);
     }
 
     // Update is called once per frame
@@ -31,6 +35,7 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        cameraHolder.SetActive(false);
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
@@ -38,15 +43,16 @@ public class PauseMenu : MonoBehaviour
 
     public void ResumeGame()
     {
+        cameraHolder.SetActive(true);
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
 
-    public void GoToMainMenu()
+    public void GoToSettings()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        //Time.timeScale = 0f;
+        settingsMenu.SetActive(true);
     }
 
     public void QuitGame()
