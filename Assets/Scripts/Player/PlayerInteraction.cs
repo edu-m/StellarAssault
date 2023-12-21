@@ -6,7 +6,7 @@ using TMPro;
 public class PlayerInteraction : MonoBehaviour
 {
     public Camera mainCam;
-    public float interactionDistance = 2f;
+    public float interactionDistance = 4f;
     public GameObject interactionUI;
     public TextMeshProUGUI interactionText;
     public TextMeshProUGUI keyCodeText;
@@ -29,7 +29,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out hit, float.PositiveInfinity))
         {
             interactionUI.SetActive(true);
-            if (hit.collider.TryGetComponent<IInteractable>(out var interactable) && hit.distance < interactionDistance) 
+            if (hit.collider.TryGetComponent<IInteractable>(out var interactable)) 
             {
                 hitSomething = true;
                 keyCodeText.text = interactKey.ToString();
@@ -37,11 +37,7 @@ public class PlayerInteraction : MonoBehaviour
                 if (Input.GetKeyDown(interactKey))
                     interactable.Interact();
             }
-            else
-            {
                 interactionUI.SetActive(hitSomething);
-            }
-
         }
     }
 }
