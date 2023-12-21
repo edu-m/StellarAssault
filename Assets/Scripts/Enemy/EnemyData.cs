@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyData : MonoBehaviour, IDamageable
 {
     private Animator animator;
     private ParticleSystem ps;
-    
+    private NavMeshAgent agent;
     [SerializeField] public float health;
     
 
@@ -36,6 +37,7 @@ public class EnemyData : MonoBehaviour, IDamageable
 
     public void DeathEvent()
     {
+        agent.isStopped = true;
         StartCoroutine(DeathAnimationFade());
     }
 
@@ -45,6 +47,7 @@ public class EnemyData : MonoBehaviour, IDamageable
         ps = GetComponent<ParticleSystem>();
         //ps.gameObject.SetActive(false);
         animator = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
     }
 
 }
