@@ -29,7 +29,7 @@ public class PlayerInteraction : MonoBehaviour
         if (Physics.Raycast(ray, out hit, float.PositiveInfinity))
         {
             interactionUI.SetActive(true);
-            if (hit.collider.TryGetComponent<IInteractable>(out var interactable)) 
+            if (hit.collider.TryGetComponent<IInteractable>(out var interactable) && hit.distance < interactionDistance) 
             {
                 hitSomething = true;
                 keyCodeText.text = interactKey.ToString();

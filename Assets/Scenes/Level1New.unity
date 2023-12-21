@@ -4459,6 +4459,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2087442991}
     - target: {fileID: 3359806458495067393, guid: 943ce7c8217dfc444aad5722c3ea6d19, type: 3}
+      propertyPath: PlayerCharacter
+      value: 
+      objectReference: {fileID: 427372860}
+    - target: {fileID: 3359806458495067393, guid: 943ce7c8217dfc444aad5722c3ea6d19, type: 3}
       propertyPath: transforms.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -6615,6 +6619,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5011198590351587956, guid: 80d0aa5bb50cf954586c3ea07a805e19, type: 3}
   m_PrefabInstance: {fileID: 424712357}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &427372860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 193908, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
+  m_PrefabInstance: {fileID: 1555148471}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &440987454
 GameObject:
@@ -19841,10 +19850,18 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13719338, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
+      propertyPath: m_CastShadows
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 13720394, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 4300008, guid: cfeff1d67ecb92245941b957cebd290e, type: 3}
+    - target: {fileID: 13720394, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
+      propertyPath: m_CastShadows
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 13783508, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_CastShadows
       value: 3
@@ -25341,7 +25358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCam: {fileID: 1012005135}
-  interactionDistance: 2
+  interactionDistance: 4
   interactionUI: {fileID: 1275617254}
   interactionText: {fileID: 117291372}
   keyCodeText: {fileID: 1355879407}
