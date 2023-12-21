@@ -23,7 +23,7 @@ public class PlayerInteraction : MonoBehaviour
          * The camera's viewport defines the area of the game world that will be rendered to the screen. 
          * It is essentially the region in 3D space that the camera "sees" and captures to display on the screen.
          */
-        Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f,0.5f,0)); // Vector3.one is short for (1f, 1f, 1f)
+        Ray ray = mainCam.ViewportPointToRay(new Vector3(0.5f,0.5f,0f));
         RaycastHit hit;
         bool hitSomething = false;
         if (Physics.Raycast(ray, out hit, float.PositiveInfinity))
