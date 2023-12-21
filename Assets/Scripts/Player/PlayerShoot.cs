@@ -20,7 +20,7 @@ public class PlayerShoot : MonoBehaviour
 
     private void Update()
     {
-        if (!PauseMenu.isPaused)
+        if (!GameManager.isPaused)
         {
             if (Input.GetMouseButton(0))
                 shootInput?.Invoke();
