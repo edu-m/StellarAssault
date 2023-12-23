@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class KeyCard : MonoBehaviour
+public class KeyCard : MonoBehaviour, IInteractable
 {
     [SerializeField] GameObject keyCard;
     [SerializeField] List<Transform> transforms;
