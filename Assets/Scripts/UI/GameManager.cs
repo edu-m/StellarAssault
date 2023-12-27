@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject cameraHolder;
     public GameObject soundsMenu;
+    public GameObject controlsMenu;
 
     private void Awake()
     {
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         soundsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
         cameraHolder.SetActive(true);
     }
 
@@ -108,6 +110,14 @@ public class GameManager : MonoBehaviour
         soundsMenu.SetActive(true);
     }
 
+    public void GoToControls()
+    {
+        //Time.timeScale = 0f;
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        controlsMenu.SetActive(true);
+    }
+
     public void Back()
     {
         if (settingsMenu.activeInHierarchy==true){        
@@ -119,9 +129,10 @@ public class GameManager : MonoBehaviour
                settingsMenu.SetActive(true);
                soundsMenu.SetActive(false);
             }
-        else if (pauseMenu.activeInHierarchy == true)
+        else if (controlsMenu.activeInHierarchy == true)
         {
-            ResumeGame();
+            settingsMenu.SetActive(true);
+            controlsMenu.SetActive(false);
         }
     }
 
