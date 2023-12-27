@@ -15,4 +15,6 @@ public class PlayerEvent : MonoBehaviour
             Instantiate(_object,pos,transform.rotation);
         }
     }
+
+   
 }
