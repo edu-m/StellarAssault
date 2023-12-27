@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     public static bool isPaused;
     public GameObject settingsMenu;
     public GameObject cameraHolder;
+    public GameObject soundsMenu;
 
     private void Awake()
     {
@@ -47,6 +49,7 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        soundsMenu.SetActive(false);
         cameraHolder.SetActive(true);
     }
 
@@ -93,8 +96,36 @@ public class GameManager : MonoBehaviour
     public void GoToSettings()
     {
         //Time.timeScale = 0f;
+        pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
+
+    public void GoToSounds()
+    {
+        //Time.timeScale = 0f;
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        soundsMenu.SetActive(true);
+    }
+
+    public void Back()
+    {
+        if (settingsMenu.activeInHierarchy==true){        
+                pauseMenu.SetActive(true);
+                settingsMenu.SetActive(false);
+        }
+        else if (soundsMenu.activeInHierarchy == true)
+            {
+               settingsMenu.SetActive(true);
+               soundsMenu.SetActive(false);
+            }
+        else if (pauseMenu.activeInHierarchy == true)
+        {
+            ResumeGame();
+        }
+    }
+
+    
 
     public void QuitGame()
     {

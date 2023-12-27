@@ -7,7 +7,7 @@ public class PlayerData : MonoBehaviour
 {
     int health;
     const int  maxHealth = 100;
-    [SerializeField] Image lifeBar;
+    [SerializeField] Slider lifeBar;
 
     private static bool hasKeyCard;
     // Start is called before the first frame update
@@ -29,7 +29,6 @@ public class PlayerData : MonoBehaviour
     public void GetShot()
     {
         health -= 10;
-        float fill = (float)health / maxHealth;
-        lifeBar.fillAmount = fill;
+        lifeBar.value = health;
     }
 }
