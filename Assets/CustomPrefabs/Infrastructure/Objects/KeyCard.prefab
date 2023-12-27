@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6897528035562357684}
   - component: {fileID: 2469354984426383303}
   - component: {fileID: 3359806458495067393}
+  - component: {fileID: 9013935055076273964}
   m_Layer: 0
   m_Name: KeyCard
   m_TagString: Untagged
@@ -111,6 +112,27 @@ MonoBehaviour:
   keyCard: {fileID: 0}
   transforms: []
   keycardOverlay: {fileID: 0}
+--- !u!65 &9013935055076273964
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9118030944979058055}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25, y: 0.16, z: 0.45}
+  m_Center: {x: -0.03, y: 0, z: 0.05}
 --- !u!1001 &1387636958202869084
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -137,7 +159,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 472926, guid: 6e1e6e01e60af9e4abae4d324b854198, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.036539
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 472926, guid: 6e1e6e01e60af9e4abae4d324b854198, type: 3}
       propertyPath: m_LocalPosition.y
@@ -145,7 +167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 472926, guid: 6e1e6e01e60af9e4abae4d324b854198, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.023548
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 472926, guid: 6e1e6e01e60af9e4abae4d324b854198, type: 3}
       propertyPath: m_LocalRotation.w
