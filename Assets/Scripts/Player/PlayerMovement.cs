@@ -25,11 +25,11 @@ public class Movement : MonoBehaviour
     public float crouchYScale;
     private float startYScale;
 
-    [Header("Keybinds")]
+    /*[Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode sprintKey = KeyCode.LeftShift;
     public KeyCode crouchKey = KeyCode.LeftControl;
-    public KeyCode rollKey = KeyCode.LeftAlt;
+    public KeyCode rollKey = KeyCode.LeftAlt;*/
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -112,13 +112,13 @@ public class Movement : MonoBehaviour
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
-        if(Input.GetKey(jumpKey) && canJump && grounded) { 
+        if(Input.GetKey(PlayerInputs.jumpKey) && canJump && grounded) { 
             canJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCoolDown);
         }
 
-        if (Input.GetKeyDown(crouchKey))
+        if (Input.GetKeyDown(PlayerInputs.crouchKey))
         {
             animator.SetBool("Crouch", true);
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
@@ -127,7 +127,7 @@ public class Movement : MonoBehaviour
             // to quickly push the player back to the ground.
             rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
         }
-        if (!Input.GetKey(crouchKey) && CanUncrouch())
+        if (!Input.GetKey(PlayerInputs.crouchKey) && CanUncrouch())
         {
             animator.SetBool("Crouch", false);
             transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
@@ -150,7 +150,7 @@ public class Movement : MonoBehaviour
             {
                 //cameraPos.transform.localPosition = defaultCameraPos;
                 animator.SetBool("OnGround", true);
-                if (Input.GetKey(sprintKey)) // if we're sprinting, that's the only thing we can do
+                if (Input.GetKey(PlayerInputs.sprintKey)) // if we're sprinting, that's the only thing we can do
                 {
                     //Debug.Log("Running");
                     cameraPos.transform.localPosition = defaultCameraPos + new Vector3(0f, 0f, 0.2f);
@@ -159,7 +159,7 @@ public class Movement : MonoBehaviour
                 }
                 else // if we're not, we can either crouch or walk
                 {
-                    if (Input.GetKey(crouchKey))
+                    if (Input.GetKey(PlayerInputs.crouchKey))
                     {
                         //Debug.Log("Crouching");
                         state = MovementState.crouching;

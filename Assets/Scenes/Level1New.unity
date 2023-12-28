@@ -5669,6 +5669,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368550341}
   m_CullTransparentMesh: 1
+--- !u!1 &378581461
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 378581463}
+  - component: {fileID: 378581462}
+  m_Layer: 0
+  m_Name: PlayerInputs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &378581462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378581461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2662951a337459248b87f7efa09c99da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputJumpKey: {fileID: 2040365040}
+  inputSprintKey: {fileID: 1252872344}
+  inputCrouchKey: {fileID: 736437187}
+  inputRollKey: {fileID: 1216318954}
+--- !u!4 &378581463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378581461}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1963.8632, y: 1084.0767, z: -7.3580704}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &379311158
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9181,26 +9229,13 @@ GameObject:
   - component: {fileID: 551205861}
   - component: {fileID: 551205860}
   - component: {fileID: 551205859}
-  - component: {fileID: 551205858}
   m_Layer: 5
   m_Name: ControlsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &551205858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 551205857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbefef247a5aef3439d32617e36896d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_IsActive: 1
 --- !u!114 &551205859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11232,9 +11267,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 508599607}
-        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: Back
+      - m_Target: {fileID: 378581462}
+        m_TargetAssemblyTypeName: PlayerInputs, Assembly-CSharp
+        m_MethodName: SaveControls
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12553,7 +12588,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 0
+  m_CharacterLimit: 1
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -17201,7 +17236,6 @@ GameObject:
   - component: {fileID: 1135606291}
   - component: {fileID: 1135606290}
   - component: {fileID: 1135606289}
-  - component: {fileID: 1135606288}
   m_Layer: 5
   m_Name: SoundsMenu
   m_TagString: Untagged
@@ -17209,18 +17243,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1135606288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135606287}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbefef247a5aef3439d32617e36896d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1135606289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18045,7 +18067,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 0
+  m_CharacterLimit: 1
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -19416,7 +19438,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 0
+  m_CharacterLimit: 1
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -21152,7 +21174,6 @@ GameObject:
   - component: {fileID: 1327058378}
   - component: {fileID: 1327058377}
   - component: {fileID: 1327058376}
-  - component: {fileID: 1327058375}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -21160,18 +21181,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &1327058375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1327058374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbefef247a5aef3439d32617e36896d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1327058376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31386,7 +31395,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 0
+  m_CharacterLimit: 1
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -31883,6 +31892,7 @@ GameObject:
   - component: {fileID: 2084633314}
   - component: {fileID: 2084633315}
   - component: {fileID: 2084633316}
+  - component: {fileID: 2084633317}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -31954,10 +31964,6 @@ MonoBehaviour:
   airMultiplier: 0.4
   crouchSpeed: 4
   crouchYScale: 0.5
-  jumpKey: 32
-  sprintKey: 304
-  crouchKey: 306
-  rollKey: 308
   playerHeight: 2
   whatIsGround:
     serializedVersion: 2
@@ -31991,6 +31997,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _object: {fileID: 0}
+--- !u!114 &2084633317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084633310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2662951a337459248b87f7efa09c99da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputJumpKey: {fileID: 0}
+  inputSprintKey: {fileID: 0}
+  inputCrouchKey: {fileID: 0}
+  inputRollKey: {fileID: 0}
 --- !u!1 &2087442991
 GameObject:
   m_ObjectHideFlags: 0
@@ -32638,6 +32660,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 508599606}
   - {fileID: 1834714484}
+  - {fileID: 378581463}
   - {fileID: 2144540863}
   - {fileID: 242601638}
   - {fileID: 294125416}
