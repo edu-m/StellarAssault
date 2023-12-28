@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class MusicManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class MusicManager : MonoBehaviour
     // game can be played both in "stealth mode" and "direct mode"
     // the music will change accordingly
     [SerializeField] public bool directMode;
+    
     IEnumerator ChangeMusic()
     {
         //play stealth music
@@ -58,4 +60,6 @@ public class MusicManager : MonoBehaviour
         directMode = false;
         StartCoroutine(ChangeMusic());
     }
+
+   
 }

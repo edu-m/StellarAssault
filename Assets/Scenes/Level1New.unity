@@ -1507,7 +1507,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -142, y: -1}
+  m_AnchoredPosition: {x: -306, y: -1}
   m_SizeDelta: {x: 390.9095, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &99722389
@@ -3499,8 +3499,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f263b8b02546254aa3558869bf2036e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stealthModeMusic: {fileID: 0}
-  directModeMusic: {fileID: 0}
+  stealthModeMusic: {fileID: 8300000, guid: e2be28aca7051b549b942484dc090615, type: 3}
+  directModeMusic: {fileID: 8300000, guid: 5684f7dd9603b5649b87fc047dfb0df3, type: 3}
   directMode: 0
 --- !u!4 &242601638
 Transform:
@@ -9188,7 +9188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &551205858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9262,7 +9262,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &551205862
 RectTransform:
@@ -11507,6 +11507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647302661}
   - component: {fileID: 647302662}
+  - component: {fileID: 647302663}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -11580,13 +11581,40 @@ MonoBehaviour:
   m_FillRect: {fileID: 851076382}
   m_HandleRect: {fileID: 959718471}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 647302663}
+        m_TargetAssemblyTypeName: MixerManager, Assembly-CSharp
+        m_MethodName: SetMusicVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &647302663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647302660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06960718ef6a8ff40af039c2f0da4f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: fb3a9b7e84197684795d75f01cf01def, type: 2}
+  musicSlider: {fileID: 647302662}
+  soundsSlider: {fileID: 1582579284}
 --- !u!4 &679162519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 450284, guid: 6ffa7d55296318341acf5521f4bbae00, type: 3}
@@ -12021,7 +12049,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -145.45477, y: 255}
+  m_AnchoredPosition: {x: -307, y: 255}
   m_SizeDelta: {x: 390.9095, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &707196910
@@ -17254,7 +17282,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1135606292
 RectTransform:
@@ -21131,7 +21159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1327058375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26141,6 +26169,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1582579283}
   - component: {fileID: 1582579284}
+  - component: {fileID: 1582579285}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -26214,13 +26243,40 @@ MonoBehaviour:
   m_FillRect: {fileID: 1447876590}
   m_HandleRect: {fileID: 790389866}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.0001
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1582579285}
+        m_TargetAssemblyTypeName: MixerManager, Assembly-CSharp
+        m_MethodName: SetSoundsVolume
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1582579285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1582579282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06960718ef6a8ff40af039c2f0da4f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: fb3a9b7e84197684795d75f01cf01def, type: 2}
+  musicSlider: {fileID: 647302662}
+  soundsSlider: {fileID: 1582579284}
 --- !u!1 &1586007720
 GameObject:
   m_ObjectHideFlags: 0
@@ -28173,7 +28229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1829061070
 MonoBehaviour:
   m_ObjectHideFlags: 0
