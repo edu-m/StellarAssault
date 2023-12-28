@@ -20,52 +20,42 @@ public class PlayerInputs : MonoBehaviour
 
     void Start()
     {
-        SaveControls();
-
-    }
-
-    public void LoadControlsSettings()
-    {
-     jumpKey = KeyCode.Space;
-     sprintKey = KeyCode.LeftShift;
-     crouchKey = KeyCode.LeftControl;
-     rollKey = KeyCode.LeftAlt;
+        if (FirstTime())
+        {
+            ResetDefaultControls();
+        }
+        else
+            SetControls();
 
     }
 
     public void ResetDefaultControls()
     {
-        LoadControlsSettings();
-        Debug.Log(jumpKey.ToString() + " " + sprintKey.ToString() + " " + crouchKey.ToString() + " " + rollKey.ToString());
+     PlayerPrefs.SetString("jumpKey", "Space");
+     PlayerPrefs.SetString("sprintKey", "LeftShift");
+     PlayerPrefs.SetString("crouchKey", "LeftControl");
+     PlayerPrefs.SetString("rollKey", "LeftAlt");
+
+        SetControls();
+
+    }
+
+    public bool FirstTime()
+    {
+        if (!PlayerPrefs.HasKey("jumpKey"))
+        {
+            return true;
+        }
+        return false;
     }
     public void SaveControls()
     {
-        PlayerPrefs.SetString("jumpKey", inputJumpKey.text.ToString());
-        PlayerPrefs.SetString("sprintKey", inputSprintKey.text.ToString());
-        PlayerPrefs.SetString("crouchKey", inputCrouchKey.text.ToString());
-        PlayerPrefs.SetString("rollKey", inputRollKey.text.ToString());
-
-
-        if (inputJumpKey.text.ToString().Equals(""))
-        {
-            
-            PlayerPrefs.SetString("jumpKey", "Space");
-        }
-
-        if (inputSprintKey.text.ToString().Equals(""))
-        {
-            PlayerPrefs.SetString("sprintKey", "LeftShift");
-        }
-
-        if (inputCrouchKey.text.ToString().Equals(""))
-        {
-            PlayerPrefs.SetString("crouchKey", "LeftControl");
-        }
-
-        if (inputRollKey.text.ToString().Equals(""))
-        {
-            PlayerPrefs.SetString("rollKey", "LeftAlt");
-        }
+     
+     PlayerPrefs.SetString("jumpKey", inputJumpKey.text.ToString());
+     PlayerPrefs.SetString("sprintKey", inputSprintKey.text.ToString());
+     PlayerPrefs.SetString("crouchKey", inputCrouchKey.text.ToString());
+     PlayerPrefs.SetString("rollKey", inputRollKey.text.ToString());
+        Debug.Log("Saved" +jumpKey.ToString() + " " + sprintKey.ToString() + " " + crouchKey.ToString() + " " + rollKey.ToString());
 
         SetControls();
     }
