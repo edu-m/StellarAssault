@@ -4,7 +4,8 @@ using TMPro;
 using UnityEngine;
 
 public class PlayerInputs : MonoBehaviour
-{
+{   
+
     public static KeyCode jumpKey;
     public static KeyCode sprintKey;
     public static KeyCode crouchKey;
@@ -16,21 +17,11 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] TMP_InputField inputRollKey;
 
     // Start is called before the first frame update
-    private void Awake()
-    {
-    
-    }
 
     void Start()
     {
-        LoadControlsSettings();
+        SaveControls();
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void LoadControlsSettings()
@@ -42,12 +33,19 @@ public class PlayerInputs : MonoBehaviour
 
     }
 
+    public void ResetDefaultControls()
+    {
+        LoadControlsSettings();
+        Debug.Log(jumpKey.ToString() + " " + sprintKey.ToString() + " " + crouchKey.ToString() + " " + rollKey.ToString());
+    }
     public void SaveControls()
     {
         PlayerPrefs.SetString("jumpKey", inputJumpKey.text.ToString());
         PlayerPrefs.SetString("sprintKey", inputSprintKey.text.ToString());
         PlayerPrefs.SetString("crouchKey", inputCrouchKey.text.ToString());
         PlayerPrefs.SetString("rollKey", inputRollKey.text.ToString());
+
+
         if (inputJumpKey.text.ToString().Equals(""))
         {
             
@@ -79,7 +77,7 @@ public class PlayerInputs : MonoBehaviour
        sprintKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("sprintKey"));
        crouchKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("crouchKey"));
        rollKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("rollKey"));
-      
+        Debug.Log(jumpKey.ToString() + " " + sprintKey.ToString() + " " + crouchKey.ToString() + " " + rollKey.ToString());
     }
 
 
