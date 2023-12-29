@@ -10,7 +10,6 @@ public class KeyCard : MonoBehaviour, IInteractable
     [SerializeField] List<Transform> transforms;
     [SerializeField] GameObject keycardOverlay;
     [SerializeField] GameObject PlayerCharacter;
-    private Animator animator;
 
     public string GetDescription()
     {
@@ -19,7 +18,6 @@ public class KeyCard : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        animator.SetBool("Pickup", true);
         PlayerData.SetKeyCard(true);
         keyCard.SetActive(false);
         keycardOverlay.SetActive(true);
@@ -28,7 +26,6 @@ public class KeyCard : MonoBehaviour, IInteractable
     // Update is called once per frame
     public void Start()
     {
-        animator = PlayerCharacter.GetComponent<Animator>();
         keycardOverlay.SetActive(false);
         Transform tempTransform = transforms[Random.Range(0, transforms.Count)];
         keyCard.transform.SetPositionAndRotation(tempTransform.position, tempTransform.rotation);
