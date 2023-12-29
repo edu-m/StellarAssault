@@ -1,13 +1,15 @@
+using Assets.Scripts.Weapons;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour 
 {
     [SerializeField] GameObject enemySoldier;
     [SerializeField] float speed;
     Animator animator;
     // Start is called before the first frame update
+    
     void Start()
     {
         animator = enemySoldier.GetComponent<Animator>();

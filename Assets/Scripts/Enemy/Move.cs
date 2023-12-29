@@ -5,12 +5,13 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
-public class Move : MonoBehaviour
+public class Move : MonoBehaviour, IHear
 {
     [SerializeField] NavMeshAgent agent;
     public Transform pointA;
     public Transform pointB;
     private bool MoveBack;
+    public static bool playerShoots = false;
 
     private void Awake()
     {
@@ -20,13 +21,20 @@ public class Move : MonoBehaviour
 
     private void Update()
     {
+        StartCoroutine(MoveRoutine());
+        
+    }
+
+    IEnumerator MoveRoutine()
+    {
+        Debug.Log(playerShoots);
         if (MoveBack)
         {
             agent.SetDestination(pointB.position);
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
-                 agent.SetDestination(pointA.position);
-                 MoveBack = false;
+                agent.SetDestination(pointA.position);
+                MoveBack = false;
             }
         }
         else
@@ -35,5 +43,11 @@ public class Move : MonoBehaviour
             if (agent.remainingDistance <= agent.stoppingDistance)
                 MoveBack = true;
         }
+        yield return new WaitUntil(() => playerShoots);
+    }
+    public void RespondToSound(Sound shotSound)
+    {
+        Debug.Log("Enemy listens to sound and goes straight to it");
+            agent.SetDestination(shotSound.pos);
     }
 }
