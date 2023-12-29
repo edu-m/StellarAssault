@@ -4,7 +4,24 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public static MusicManager Instance { get; private set; }
+    private static MusicManager _instance;
+    public static MusicManager Instance
+    {
+        get
+        {   
+            if (_instance == null)
+            {   //Se il MusicManager non è stato istanziato, lo ricerca nella gerarchia e lo istanzia
+                _instance = GameObject.FindObjectOfType<MusicManager>();
+
+            }
+            if (_instance == null)
+            {   //Se è ancora non istanziato, lo segnala
+                Debug.LogError("No GameManager in scene");
+
+            }
+            return _instance;
+        }
+    }
     AudioSource audioSource;
     [SerializeField] private AudioClip stealthModeMusic;
     [SerializeField] private AudioClip directModeMusic;
@@ -21,7 +38,19 @@ public class MusicManager : MonoBehaviour
         audioSource.clip = directModeMusic;
         audioSource.Play();
     }
-
+    private void Awake()
+    {
+        if (_instance == null)
+        {   //Se non è presente, lo istanzia e fa in modo che non venga distrutto a un eventuale caricamento
+            //di una nuova scena
+            _instance = this;
+            GameObject.DontDestroyOnLoad(this.gameObject);
+        }
+        else
+        {   //Altrimenti, distrugge questa istanza
+            GameObject.Destroy(this.gameObject);
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {

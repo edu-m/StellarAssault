@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
+    public static EnemyManager Instance;
     [SerializeField] GameObject enemy;
     List<GameObject> enemyList;
     [SerializeField] int enemyListCount;
     [SerializeField] List<Transform> checkPointList;
     //[SerializeField] int spawnPointCount;
     [SerializeField] float timeToSpawn;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     public void Start()
     {
