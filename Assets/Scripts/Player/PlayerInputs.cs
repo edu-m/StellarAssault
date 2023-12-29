@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInputs : MonoBehaviour
 {   
@@ -11,10 +12,10 @@ public class PlayerInputs : MonoBehaviour
     public static KeyCode crouchKey;
     public static KeyCode rollKey;
 
-    [SerializeField] TMP_InputField inputJumpKey;
-    [SerializeField] TMP_InputField inputSprintKey;
-    [SerializeField] TMP_InputField inputCrouchKey;
-    [SerializeField] TMP_InputField inputRollKey;
+    [SerializeField] TMP_Text outputJumpKey;
+    [SerializeField] TMP_Text outputSprintKey;
+    [SerializeField] TMP_Text outputCrouchKey;
+    [SerializeField] TMP_Text outputRollKey;
 
     // Start is called before the first frame update
 
@@ -31,10 +32,10 @@ public class PlayerInputs : MonoBehaviour
 
     public void ResetDefaultControls()
     {
-     PlayerPrefs.SetString("jumpKey", "Space");
-     PlayerPrefs.SetString("sprintKey", "LeftShift");
-     PlayerPrefs.SetString("crouchKey", "LeftControl");
-     PlayerPrefs.SetString("rollKey", "LeftAlt");
+     PlayerPrefs.SetString("Jump", "Space");
+     PlayerPrefs.SetString("Sprint", "LeftShift");
+     PlayerPrefs.SetString("Crouch", "LeftControl");
+     PlayerPrefs.SetString("Roll", "LeftAlt");
 
         SetControls();
 
@@ -42,32 +43,30 @@ public class PlayerInputs : MonoBehaviour
 
     public bool FirstTime()
     {
-        if (!PlayerPrefs.HasKey("jumpKey"))
+        if (!PlayerPrefs.HasKey("Jump"))
         {
             return true;
         }
         return false;
     }
-    public void SaveControls()
+    public void SaveControl(Button control)
     {
-     
-     PlayerPrefs.SetString("jumpKey", inputJumpKey.text.ToString());
-     PlayerPrefs.SetString("sprintKey", inputSprintKey.text.ToString());
-     PlayerPrefs.SetString("crouchKey", inputCrouchKey.text.ToString());
-     PlayerPrefs.SetString("rollKey", inputRollKey.text.ToString());
-        Debug.Log("Saved" +jumpKey.ToString() + " " + sprintKey.ToString() + " " + crouchKey.ToString() + " " + rollKey.ToString());
-
-        SetControls();
+     PlayerPrefs.SetString(control.transform.parent.name.ToString(), control.tag.ToString());
+     SetControls();
     }
 
     public void SetControls()
     {
       
-       jumpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("jumpKey"));
-       sprintKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("sprintKey"));
-       crouchKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("crouchKey"));
-       rollKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("rollKey"));
-        Debug.Log(jumpKey.ToString() + " " + sprintKey.ToString() + " " + crouchKey.ToString() + " " + rollKey.ToString());
+       jumpKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Jump"));
+       sprintKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Sprint"));
+       crouchKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Crouch"));
+       rollKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Roll"));
+       outputJumpKey.text= jumpKey.ToString();
+       outputSprintKey.text = sprintKey.ToString();
+       outputCrouchKey.text = crouchKey.ToString();
+       outputRollKey.text = rollKey.ToString();
+        
     }
 
 
