@@ -8,11 +8,11 @@ public class PlayerEvent : MonoBehaviour
     private void Update()
     {
         // This is a debug event. Remove in final release!
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            Vector3 pos = transform.position;
-            pos.y += 3f;
-            Instantiate(_object,pos,transform.rotation);
+            _object.transform.SetPositionAndRotation(transform.position,transform.rotation);
         }
     }
+
+   
 }

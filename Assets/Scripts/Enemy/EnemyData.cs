@@ -32,7 +32,7 @@ public class EnemyData : MonoBehaviour, IDamageable
         //ps.gameObject.SetActive(true);
         ps.Play();
         yield return new WaitForSeconds(0.1f);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void DeathEvent()
