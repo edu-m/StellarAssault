@@ -6,6 +6,10 @@ TagManager:
   tags:
   - checkPoint
   - SpawnPoint
+  - Space
+  - LeftShift
+  - LeftControl
+  - LeftAlt
   layers:
   - Default
   - TransparentFX

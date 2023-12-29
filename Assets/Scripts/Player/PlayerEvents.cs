@@ -13,4 +13,6 @@ public class PlayerEvent : MonoBehaviour
             _object.transform.SetPositionAndRotation(transform.position,transform.rotation);
         }
     }
+
+   
 }

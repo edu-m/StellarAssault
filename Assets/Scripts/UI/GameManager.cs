@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -23,6 +24,8 @@ public class GameManager : MonoBehaviour
     public static bool isPaused;
     public GameObject settingsMenu;
     public GameObject cameraHolder;
+    public GameObject soundsMenu;
+    public GameObject controlsMenu;
 
     private void Awake()
     {
@@ -39,6 +42,8 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
+        soundsMenu.SetActive(false);
+        controlsMenu.SetActive(false);
         cameraHolder.SetActive(true);
     }
 
@@ -81,8 +86,45 @@ public class GameManager : MonoBehaviour
     public void GoToSettings()
     {
         //Time.timeScale = 0f;
+        pauseMenu.SetActive(false);
         settingsMenu.SetActive(true);
     }
+
+    public void GoToSounds()
+    {
+        //Time.timeScale = 0f;
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        soundsMenu.SetActive(true);
+    }
+
+    public void GoToControls()
+    {
+        //Time.timeScale = 0f;
+        pauseMenu.SetActive(false);
+        settingsMenu.SetActive(false);
+        controlsMenu.SetActive(true);
+    }
+
+    public void Back()
+    {
+        if (settingsMenu.activeInHierarchy==true){        
+                pauseMenu.SetActive(true);
+                settingsMenu.SetActive(false);
+        }
+        else if (soundsMenu.activeInHierarchy == true)
+            {
+               settingsMenu.SetActive(true);
+               soundsMenu.SetActive(false);
+            }
+        else if (controlsMenu.activeInHierarchy == true)
+        {
+            settingsMenu.SetActive(true);
+            controlsMenu.SetActive(false);
+        }
+    }
+
+    
 
     public void QuitGame()
     {
