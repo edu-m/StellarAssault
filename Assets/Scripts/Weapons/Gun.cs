@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
     private Slider reloadTimerSlider;
     
 
-    readonly Vector3 UIElementReloadScale = new Vector3(0.1f, 0.1f, 0f);
+    readonly Vector3 UIElementReloadScale = new Vector3(1f, 1f, 0f);
 
     float timeSinceLastShot;
 

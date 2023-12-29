@@ -12,15 +12,9 @@ public class GameManager : MonoBehaviour
         get
         {
             if (_instance == null)
-            {
-                _instance = GameObject.FindObjectOfType<GameManager>();
-
-            }
+                _instance = FindObjectOfType<GameManager>();
             if (_instance == null)
-            {
                 Debug.LogError("No GameManager in scene");
-
-            }
             return _instance;
         }
     }
@@ -35,12 +29,10 @@ public class GameManager : MonoBehaviour
         if (_instance==null)
         {
             _instance = this;
-            GameObject.DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
-        {
-            GameObject.Destroy(this.gameObject);
-        }
+            Destroy(gameObject);
     }
     // Start is called before the first frame update
     void Start()
@@ -56,13 +48,9 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
-            {
                 ResumeGame();
-            }
             else
-            {
                 PauseGame();
-            }
         } 
     }
     public void PlayGame()

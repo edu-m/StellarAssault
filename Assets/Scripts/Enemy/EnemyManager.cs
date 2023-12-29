@@ -39,9 +39,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemyList.Count > 0)
             for (int i = 0; i < enemyListCount; i++)
-            {
                 enemyList[i].SetActive(true);
-            }
         yield return new WaitForSeconds(timeToSpawn);
     }
 
