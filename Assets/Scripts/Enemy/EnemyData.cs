@@ -19,7 +19,7 @@ public class EnemyData : MonoBehaviour, IDamageable
     }
     public void Damage(float damage)
     {
-        Debug.Log("Damage");
+        //Debug.Log("Damage");
         health -= damage;
         if (health <= 0)
             DeathEvent();
