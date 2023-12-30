@@ -18485,8 +18485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c28e902359f628645a4574aa567494ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 550
-  sensY: 550
+  sensX: 20
+  sensY: 20
   orientation: {fileID: 1573229529}
   xRotation: 0
   yRotation: 0
@@ -30522,6 +30522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reloadSound: {fileID: 1603054316}
   shootingSound: {fileID: 1603054318}
+  soundRange: 25
 --- !u!82 &1603054318
 AudioSource:
   m_ObjectHideFlags: 0
@@ -33225,7 +33226,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8166176590462582702, guid: 41298a2d4a3a15640be933a841a57b02, type: 3}
-  enemyListCount: 1
+  player: {fileID: 1575599817}
+  enemyListCount: 5
   checkPointList:
   - {fileID: 450011873}
   - {fileID: 193303838}
@@ -37491,7 +37493,7 @@ Transform:
   m_GameObject: {fileID: 2084633310}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.59, y: 0.044, z: 28.209}
+  m_LocalPosition: {x: 23.49, y: -0.32, z: 25.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

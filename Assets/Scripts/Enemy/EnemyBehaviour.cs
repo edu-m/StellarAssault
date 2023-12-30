@@ -6,7 +6,8 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour 
 {
     [SerializeField] GameObject enemySoldier;
-    [SerializeField] float speed;
+    [SerializeField] float normalSpeed;
+    [SerializeField] float alarmSpeed;
     Animator animator;
     // Start is called before the first frame update
     
@@ -17,7 +18,10 @@ public class EnemyBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        animator.SetFloat("Speed", speed);
+    {   
+        if(!Move.AlarmMode())
+            animator.SetFloat("Speed", normalSpeed);
+        else
+            animator.SetFloat("Speed", alarmSpeed);
     }
 }

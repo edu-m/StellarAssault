@@ -12,6 +12,8 @@ public class Move : MonoBehaviour, IHear
     public Transform pointB;
     private bool MoveBack;
     public static bool playerShoots = false;
+    public static bool playerViewed = false;
+     public Transform player;
 
     private void Awake()
     {
@@ -21,33 +23,52 @@ public class Move : MonoBehaviour, IHear
 
     private void Update()
     {
-        StartCoroutine(MoveRoutine());
-        
-    }
-
-    IEnumerator MoveRoutine()
-    {
-        Debug.Log(playerShoots);
-        if (MoveBack)
+        //StartCoroutine(MoveRoutine());
+        if (!AlarmMode())
         {
-            agent.SetDestination(pointB.position);
-            if (agent.remainingDistance <= agent.stoppingDistance)
+            if (MoveBack)
+            {
+                agent.SetDestination(pointB.position);
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    agent.SetDestination(pointA.position);
+                    MoveBack = false;
+                }
+            }
+            else
             {
                 agent.SetDestination(pointA.position);
-                MoveBack = false;
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                    MoveBack = true;
             }
         }
         else
         {
-            agent.SetDestination(pointA.position);
-            if (agent.remainingDistance <= agent.stoppingDistance)
-                MoveBack = true;
+            agent.SetDestination(player.position);
         }
+    }
+
+    /*IEnumerator MoveRoutine()
+    {
+        Debug.Log(playerShoots);
+        
         yield return new WaitUntil(() => playerShoots);
+    }*/
+
+    public static bool AlarmMode()
+    {
+        if(!playerShoots && !playerViewed)
+        {
+            return false;
+        }
+        return true;
     }
     public void RespondToSound(Sound shotSound)
     {
         Debug.Log("Enemy listens to sound and goes straight to it");
-            agent.SetDestination(shotSound.pos);
+            playerShoots = true;
+            
     }
+
+    
 }

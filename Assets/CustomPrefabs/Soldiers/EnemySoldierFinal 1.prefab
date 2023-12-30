@@ -5470,7 +5470,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySoldier: {fileID: 8166176590462582702}
-  speed: 0.2
+  normalSpeed: 0.2
+  alarmSpeed: 1
 --- !u!114 &4828883011016417411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5497,5 +5498,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6388615615243614280}
-  destinationTarget: {fileID: 0}
-  goBackTarget: {fileID: 0}
+  pointA: {fileID: 0}
+  pointB: {fileID: 0}
+  player: {fileID: 0}

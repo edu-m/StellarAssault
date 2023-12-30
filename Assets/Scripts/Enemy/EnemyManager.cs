@@ -6,6 +6,7 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
     [SerializeField] GameObject enemy;
+    [SerializeField] Transform player;
     List<GameObject> enemyList;
     [SerializeField] int enemyListCount;
     [SerializeField] List<Transform> checkPointList;
@@ -31,6 +32,7 @@ public class EnemyManager : MonoBehaviour
             enemyList.Add(tempEnemy);
             enemyList[i].GetComponent<Move>().pointA = pointA; 
             enemyList[i].GetComponent<Move>().pointB = pointB;
+            enemyList[i].GetComponent<Move>().player = player;
             enemyList[i].SetActive(false);
            }
     }
