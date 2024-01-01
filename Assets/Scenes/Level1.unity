@@ -267,7 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 11116830}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: CameraPos
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -4461,9 +4461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f263b8b02546254aa3558869bf2036e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stealthModeMusic: {fileID: 0}
-  directModeMusic: {fileID: 0}
-  directMode: 0
+  stealthModeMusic: {fileID: 8300000, guid: e2be28aca7051b549b942484dc090615, type: 3}
+  directModeMusic: {fileID: 8300000, guid: 5684f7dd9603b5649b87fc047dfb0df3, type: 3}
 --- !u!4 &242601638
 Transform:
   m_ObjectHideFlags: 0
@@ -29268,31 +29267,31 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 113140, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 127044, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 129470, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 170348, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 173076, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 189644, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 192788, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 192788, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_IsActive
@@ -29304,7 +29303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 193908, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 193908, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_TagString
@@ -29312,7 +29311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198750, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 427246, guid: 7aa6f6434be94e44583bd055d3a42eee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29855,7 +29854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1573229529}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32782,7 +32781,7 @@ GameObject:
   - component: {fileID: 1793748722}
   - component: {fileID: 1793748723}
   - component: {fileID: 1793748724}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: PlayerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37450,9 +37449,9 @@ GameObject:
   - component: {fileID: 2084633315}
   - component: {fileID: 2084633316}
   - component: {fileID: 2084633317}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

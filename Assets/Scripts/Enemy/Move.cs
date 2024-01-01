@@ -67,6 +67,7 @@ public class Move : MonoBehaviour, IHear
     {
         Debug.Log("Enemy listens to sound and goes straight to it");
             playerShoots = true;
+            MusicManager.directMode = true;
             
     }
 
