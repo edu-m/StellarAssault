@@ -5522,5 +5522,4 @@ MonoBehaviour:
     m_Bits: 256
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 512
-  canSeePlayer: 0
+    m_Bits: 520

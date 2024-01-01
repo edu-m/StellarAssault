@@ -12,7 +12,6 @@ public class Move : MonoBehaviour, IHear
     public Transform pointB;
     private bool MoveBack;
     public static bool playerShoots = false;
-    public static bool playerViewed = false;
      public Transform player;
 
     private void Awake()
@@ -24,7 +23,7 @@ public class Move : MonoBehaviour, IHear
     private void Update()
     {
         //StartCoroutine(MoveRoutine());
-        if (!AlarmMode())
+        if (!DirectMode())
         {
             if (MoveBack)
             {
@@ -48,27 +47,25 @@ public class Move : MonoBehaviour, IHear
         }
     }
 
-    /*IEnumerator MoveRoutine()
-    {
-        Debug.Log(playerShoots);
-        
-        yield return new WaitUntil(() => playerShoots);
-    }*/
+   
 
-    public static bool AlarmMode()
+    public static bool DirectMode()
     {
-        if(!playerShoots && !playerViewed)
+        if(!playerShoots && !EnemyFieldOfView.canSeePlayer)
         {
             return false;
         }
+        MusicManager.directMode = true;
         return true;
     }
     public void RespondToSound(Sound shotSound)
     {
-        Debug.Log("Enemy listens to sound and goes straight to it");
+        Debug.Log("Enemy listens to sound and goes straight to player");
+
             playerShoots = true;
-            MusicManager.directMode = true;
+           
             
+
     }
 
     

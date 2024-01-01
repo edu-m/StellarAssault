@@ -21,7 +21,7 @@ public class NewBehaviourScript : Editor
         Handles.DrawLine(fov.transform.position,fov.transform.position+viewAngle01*fov.radius);
         Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle02 * fov.radius);
 
-        if (fov.canSeePlayer)
+        if (EnemyFieldOfView.canSeePlayer)
         {
             Handles.color = Color.green;
             Handles.DrawLine(fov.transform.position,fov.player.transform.position);

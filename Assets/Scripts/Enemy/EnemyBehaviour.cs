@@ -19,7 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(!Move.AlarmMode())
+        if(!Move.DirectMode())
             animator.SetFloat("Speed", normalSpeed);
         else
             animator.SetFloat("Speed", alarmSpeed);

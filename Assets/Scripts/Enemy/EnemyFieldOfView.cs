@@ -10,7 +10,7 @@ public class EnemyFieldOfView : MonoBehaviour
     public GameObject player;
     public LayerMask targetMask;
     public LayerMask obstructionMask;
-    public bool canSeePlayer;
+    public static bool canSeePlayer;
 
     public void Start()
     {
@@ -47,9 +47,9 @@ public class EnemyFieldOfView : MonoBehaviour
             else
                 canSeePlayer = false;
         }
-        else if(canSeePlayer)
+        /*else if(canSeePlayer)
         {
             canSeePlayer = false;
-        }
+        }*/
     }
 }
