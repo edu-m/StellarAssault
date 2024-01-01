@@ -17,7 +17,7 @@ public class LockedDoor : MonoBehaviour
     // Update is called once per frame
     private void OnTriggerEnter()
     {
-        if(PlayerData.HasKeyCard())
+        if(PlayerData.HasObject())
             animator.SetBool("character_nearby", true);
     }
     private void OnTriggerExit()

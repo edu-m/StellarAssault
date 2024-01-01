@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3340580}
   - component: {fileID: 2344426}
   - component: {fileID: 13597906}
+  - component: {fileID: 6187043704738198887}
   m_Layer: 0
   m_Name: PowerupHealth
   m_TagString: Untagged
@@ -105,3 +106,15 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: -0.00000014901161, y: 1, z: 0.0000005066395}
+--- !u!114 &6187043704738198887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8cff3cf2833b74e9075a185a9f9693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
