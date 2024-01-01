@@ -24,6 +24,7 @@ public class EnemyFieldOfView : MonoBehaviour
         {
             yield return new WaitForSeconds(0.2f);
             FOVCheck();
+            Debug.Log("Can see player " + canSeePlayer);
         }
     }
 
@@ -38,8 +39,12 @@ public class EnemyFieldOfView : MonoBehaviour
             if (Vector3.Angle(transform.forward, directionToTarget) < angle / 2)
             {
                 float distanceToTarget=Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask))
+                if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask)) 
+                {
                     canSeePlayer = true;
+                    
+                }
+                    
                 else
                     canSeePlayer = false;
                 
@@ -47,9 +52,9 @@ public class EnemyFieldOfView : MonoBehaviour
             else
                 canSeePlayer = false;
         }
-        /*else if(canSeePlayer)
+        else if(canSeePlayer)
         {
             canSeePlayer = false;
-        }*/
+        }
     }
 }

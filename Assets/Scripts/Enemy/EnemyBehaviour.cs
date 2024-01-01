@@ -14,14 +14,28 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         animator = enemySoldier.GetComponent<Animator>();
+        StartCoroutine(SpeedRoutine());
     }
 
-    // Update is called once per frame
-    void Update()
-    {   
-        if(!Move.DirectMode())
-            animator.SetFloat("Speed", normalSpeed);
-        else
-            animator.SetFloat("Speed", alarmSpeed);
+   
+    private IEnumerator SpeedRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            ChangeSpeed();
+        }
     }
+
+    private void ChangeSpeed()
+    {
+        if (!Move.DirectMode())
+            animator.SetFloat("Speed", normalSpeed);
+        else if (!EnemyFieldOfView.canSeePlayer)
+                animator.SetFloat("Speed", alarmSpeed);//If the enemy no longer sees the player, he has to run in his direction
+            else
+                animator.SetFloat("Speed", normalSpeed);//If he can see him, he will walk and shoots
+    }
+
+
 }

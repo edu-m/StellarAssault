@@ -43,7 +43,11 @@ public class Move : MonoBehaviour, IHear
         }
         else
         {
-            agent.SetDestination(player.position);
+            if (EnemyFieldOfView.canSeePlayer)
+                StartCoroutine(ShootRoutine());
+            
+            if(playerShoots)
+                agent.SetDestination(player.position); //If the enemy no longer sees the player, he will follow him
         }
     }
 
@@ -63,10 +67,17 @@ public class Move : MonoBehaviour, IHear
         Debug.Log("Enemy listens to sound and goes straight to player");
 
             playerShoots = true;
-           
-            
-
     }
 
-    
+    IEnumerator ShootRoutine()
+    {   
+
+        if (!EnemyFieldOfView.canSeePlayer)
+        {
+            Debug.Log("ShootRoutine interrupted");
+            yield break;
+        }
+    }
+
+
 }
