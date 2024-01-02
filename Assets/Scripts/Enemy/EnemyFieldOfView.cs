@@ -38,35 +38,38 @@ public class EnemyFieldOfView : MonoBehaviour
         float angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
 
         // Draw rays using Debug.DrawRay if debug is enabled
-#if false
+#if true
         Debug.DrawRay(transform.position + Vector3.up * 2f, directionToTarget * radius);
-
         Debug.DrawRay(transform.position +  Vector3.up * 2f, Quaternion.Euler(verticalFov, angle, 0) * transform.forward * radius, Color.green);
         Debug.DrawRay(transform.position +  Vector3.up * 2f, Quaternion.Euler(verticalFov, -angle, 0) * transform.forward * radius, Color.green);
 
         Debug.DrawRay(transform.position +  Vector3.up * 2f, Quaternion.Euler(-verticalFov, angle, 0) * transform.forward * radius, Color.green);
         Debug.DrawRay(transform.position + Vector3.up * 2f, Quaternion.Euler(-verticalFov, -angle, 0) * transform.forward * radius, Color.green);
-        Debug.Log(angleToTarget);
+        Debug.Log(angleToTarget >= -verticalFov && angleToTarget <= verticalFov);
 #endif
         return angleToTarget >= -verticalFov && angleToTarget <= verticalFov;
     }
 
     private void FOVCheck()
     {
-        Collider[] rangeChecks=Physics.OverlapSphere(transform.position, radius, targetMask);
-
-        if (rangeChecks.Length != 0)
+        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, targetMask);
+        if (canSeePlayer)
         {
-            Transform target = rangeChecks[0].transform;
-            Vector3 directionToTarget = (target.position - transform.position).normalized;
-            if(IsWithinAngles(target.position, angle))
-            {
-                float distanceToTarget=Vector3.Distance(transform.position, target.position);
-                canSeePlayer = !Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask);
-            }
-            else
-                canSeePlayer = false;
+            canSeePlayer = false; 
+            return; 
         }
-        canSeePlayer = false;
+
+        if (rangeChecks.Length == 0)
+            return;
+
+       Transform target = rangeChecks[0].transform;
+       Vector3 directionToTarget = (target.position - transform.position).normalized;
+       if(IsWithinAngles(target.position, angle))
+       {
+            float distanceToTarget=Vector3.Distance(transform.position, target.position);
+            canSeePlayer = !Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask);
+       }
+       else
+            canSeePlayer = false;
     }
 }

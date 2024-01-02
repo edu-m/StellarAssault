@@ -1023,6 +1023,7 @@ GameObject:
   - component: {fileID: 754144560}
   - component: {fileID: 754144559}
   - component: {fileID: 754144558}
+  - component: {fileID: 754144564}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1137,7 +1138,7 @@ Transform:
   m_GameObject: {fileID: 754144557}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.49, y: 12.21, z: 25.65}
+  m_LocalPosition: {x: -29.6, y: 12.21, z: 25.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1145,6 +1146,22 @@ Transform:
   - {fileID: 1796437472}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &754144564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 754144557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2662951a337459248b87f7efa09c99da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outputJumpKey: {fileID: 0}
+  outputSprintKey: {fileID: 0}
+  outputCrouchKey: {fileID: 0}
+  outputRollKey: {fileID: 0}
 --- !u!1 &762199902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,7 +1698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 8166176590462582702, guid: 41298a2d4a3a15640be933a841a57b02, type: 3}
   player: {fileID: 485389940}
-  enemyListCount: 5
+  enemyListCount: 1
   checkPointList:
   - {fileID: 898412049}
   - {fileID: 879471825}
