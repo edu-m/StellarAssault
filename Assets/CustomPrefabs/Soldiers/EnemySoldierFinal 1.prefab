@@ -5470,6 +5470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c514088eac3f6f54d8a41ee81fd537e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agent: {fileID: 6388615615243614280}
   enemySoldier: {fileID: 8166176590462582702}
   normalSpeed: 0.2
   alarmSpeed: 1
@@ -5515,11 +5516,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 30
-  angle: 50
+  angle: 144
   player: {fileID: 0}
   targetMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 520

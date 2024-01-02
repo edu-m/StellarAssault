@@ -13,7 +13,7 @@ public class Move : MonoBehaviour, IHear
     private bool MoveBack;
     public static bool playerShoots;
      public Transform player;
-    private bool seeAndSeekPlayer;
+     public static bool seeAndSeekPlayer;
 
     private void Awake()
     {
@@ -26,6 +26,7 @@ public class Move : MonoBehaviour, IHear
     {
         playerShoots = false;
         seeAndSeekPlayer = false;
+        agent.stoppingDistance = 1f;
     }
 
     public void Update()
@@ -55,46 +56,63 @@ public class Move : MonoBehaviour, IHear
     {
         if (!DirectMode() && !seeAndSeekPlayer) //If an enemy has never seen the player and we're not in direct mode
         {//Normal path
-            Debug.Log("Normal path");
-            if (MoveBack)
-            {
-                agent.SetDestination(pointB.position);
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    agent.SetDestination(pointA.position);
-                    MoveBack = false;
-                }
-            }
-            else
-            {
-                agent.SetDestination(pointA.position);
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                    MoveBack = true;
-            }
+            NormalPath();
         }
         else if (!EnemyFieldOfView.canSeePlayer)
         {
             Debug.Log("Run to the player");
             agent.SetDestination(player.position); //If the enemy no longer sees the player, he will follow him
+        
         }
         else
         {
-            Debug.Log("Start shooting to the player");
             seeAndSeekPlayer = true;//The first time an enemy sees the player, he will no longer return to stealth mode
-            EnemyShoot();//If the enemy can see the player
+            StartCoroutine(EnemyShoot());//If the enemy can see the player
         }
     }
     
     
-    public void EnemyShoot()
+    private IEnumerator EnemyShoot()
     {
-        Debug.Log("Enter ShootRoutine");
-        agent.SetDestination(player.position);
-
+        Debug.Log("Enter Shootroutine");
+        Shooting();
         if (!EnemyFieldOfView.canSeePlayer)
-            return;
+        {
+            Debug.Log("Exit Shootroutine");
+            yield break;
+        }
+           
+    
+    }
+
+    public void NormalPath()
+    {
+        Debug.Log("Normal path");
+        if (MoveBack)
+        {
+            agent.SetDestination(pointB.position);
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                agent.SetDestination(pointA.position);
+                MoveBack = false;
+            }
+        }
         else
-            EnemyShoot();
+        {
+            agent.SetDestination(pointA.position);
+            if (agent.remainingDistance <= agent.stoppingDistance)
+                MoveBack = true;
+        }
+    }
+
+    public void Shooting()
+    {
+        Debug.Log("Enter Shooting");
+        agent.SetDestination(player.position);
+        if (agent.remainingDistance <= agent.stoppingDistance)
+            agent.isStopped = true;
+        else
+            agent.isStopped = false;
     }
 
 
