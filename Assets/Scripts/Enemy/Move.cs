@@ -47,7 +47,7 @@ public class Move : MonoBehaviour, IHear
     }
     public void RespondToSound(Sound shotSound)
     {
-        Debug.Log("Enemy listens to sound and goes straight to player");
+        //Debug.Log("Enemy listens to sound and goes straight to player");
 
             playerShoots = true;
     }
@@ -60,7 +60,7 @@ public class Move : MonoBehaviour, IHear
         }
         else if (!EnemyFieldOfView.canSeePlayer)
         {
-            Debug.Log("Run to the player");
+            //Debug.Log("Run to the player");
             agent.SetDestination(player.position); //If the enemy no longer sees the player, he will follow him
         
         }
@@ -74,11 +74,11 @@ public class Move : MonoBehaviour, IHear
     
     private IEnumerator EnemyShoot()
     {
-        Debug.Log("Enter Shootroutine");
+        //Debug.Log("Enter Shootroutine");
         Shooting();
         if (!EnemyFieldOfView.canSeePlayer)
         {
-            Debug.Log("Exit Shootroutine");
+            //Debug.Log("Exit Shootroutine");
             yield break;
         }
            
@@ -87,7 +87,7 @@ public class Move : MonoBehaviour, IHear
 
     public void NormalPath()
     {
-        Debug.Log("Normal path");
+        //Debug.Log("Normal path");
         if (MoveBack)
         {
             agent.SetDestination(pointB.position);
@@ -107,7 +107,7 @@ public class Move : MonoBehaviour, IHear
 
     public void Shooting()
     {
-        Debug.Log("Enter Shooting");
+        //Debug.Log("Enter Shooting");
         agent.SetDestination(player.position);
         if (agent.remainingDistance <= agent.stoppingDistance)
             agent.isStopped = true;
