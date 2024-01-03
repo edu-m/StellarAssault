@@ -37864,6 +37864,7 @@ GameObject:
   - component: {fileID: 2084633315}
   - component: {fileID: 2084633316}
   - component: {fileID: 2084633317}
+  - component: {fileID: 2084633318}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -37986,6 +37987,19 @@ MonoBehaviour:
   interactionText: {fileID: 117291372}
   keyCodeText: {fileID: 1355879407}
   interactKey: 101
+--- !u!114 &2084633318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2084633310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d9e44b76beeb2489b07f2b98c9a4ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeBar: {fileID: 1320173809}
 --- !u!1 &2087442991
 GameObject:
   m_ObjectHideFlags: 0

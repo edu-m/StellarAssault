@@ -42,13 +42,15 @@ public class EnemyBehaviour : MonoBehaviour
             else if (!EnemyFieldOfView.canSeePlayer)
                 animator.SetFloat("Speed", alarmSpeed);//If the enemy no longer sees the player, he has to run in his direction
             else
+            {
                 animator.SetFloat("Speed", normalSpeed);//If he can see him, he will walk and shoots
+            }
+                
         }
         else
         {
             animator.SetFloat("Speed", 0f);
         }
     }
-
 
 }

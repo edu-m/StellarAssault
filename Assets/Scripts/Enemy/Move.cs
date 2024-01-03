@@ -12,12 +12,16 @@ public class Move : MonoBehaviour, IHear
     public Transform pointB;
     private bool MoveBack;
     public static bool playerShoots;
-     public Transform player;
-     public static bool seeAndSeekPlayer;
+    public Transform player;
+    public static bool seeAndSeekPlayer;
+    Animator animator;
+    EnemyGun gun;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        gun= GetComponent<EnemyGun>();
         
     }
     // Start is called before the first frame update
@@ -56,6 +60,7 @@ public class Move : MonoBehaviour, IHear
     {
         if (!DirectMode() && !seeAndSeekPlayer) //If an enemy has never seen the player and we're not in direct mode
         {//Normal path
+            
             NormalPath();
         }
         else if (!EnemyFieldOfView.canSeePlayer)
@@ -67,18 +72,19 @@ public class Move : MonoBehaviour, IHear
         else
         {
             seeAndSeekPlayer = true;//The first time an enemy sees the player, he will no longer return to stealth mode
-            StartCoroutine(EnemyShoot());//If the enemy can see the player
+            StartCoroutine(ShootRoutine());//If the enemy can see the player
         }
     }
     
     
-    private IEnumerator EnemyShoot()
+    private IEnumerator ShootRoutine()
     {
         //Debug.Log("Enter Shootroutine");
         Shooting();
         if (!EnemyFieldOfView.canSeePlayer)
         {
             //Debug.Log("Exit Shootroutine");
+            //animator.SetBool("Shoot", false);
             yield break;
         }
            
@@ -87,6 +93,7 @@ public class Move : MonoBehaviour, IHear
 
     public void NormalPath()
     {
+        agent.stoppingDistance = 0f;
         //Debug.Log("Normal path");
         if (MoveBack)
         {
@@ -108,7 +115,10 @@ public class Move : MonoBehaviour, IHear
     public void Shooting()
     {
         //Debug.Log("Enter Shooting");
+        agent.stoppingDistance = 5f;
+        //animator.SetBool("Shoot", true);
         agent.SetDestination(player.position);
+        gun.Shoot();
         if (agent.remainingDistance <= agent.stoppingDistance)
             agent.isStopped = true;
         else

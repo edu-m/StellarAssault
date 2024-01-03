@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerData : MonoBehaviour
+public class PlayerData : MonoBehaviour,IDamageable
 {
     int health;
     const int  maxHealth = 100;
@@ -19,16 +19,26 @@ public class PlayerData : MonoBehaviour
 
     private void Update()
     {
-        GetShot();
+       
     }
 
     public static bool HasKeyCard() => hasKeyCard;
 
     public static void SetKeyCard(bool value) => hasKeyCard = value;
 
-    public void GetShot()
+    public void Damage(float damage)
     {
-        health -= 10;
+        health -= (int)damage;
         lifeBar.value = health;
+        DeathEvent();
+    }
+    public void DeathEvent()
+    {
+        if (health <= 0)
+        {
+            Debug.Log("Player is dead");
+        }
+        else
+            return;
     }
 }
