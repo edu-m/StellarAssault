@@ -15,13 +15,13 @@ public class Move : MonoBehaviour, IHear
     public Transform player;
     public static bool seeAndSeekPlayer;
     Animator animator;
-    EnemyGun gun;
+    EnemyGun enemyGun;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        gun= GetComponent<EnemyGun>();
+        enemyGun= GetComponent<EnemyGun>();
         
     }
     // Start is called before the first frame update
@@ -30,7 +30,6 @@ public class Move : MonoBehaviour, IHear
     {
         playerShoots = false;
         seeAndSeekPlayer = false;
-        agent.stoppingDistance = 1f;
     }
 
     public void Update()
@@ -93,7 +92,7 @@ public class Move : MonoBehaviour, IHear
 
     public void NormalPath()
     {
-        agent.stoppingDistance = 0f;
+        agent.stoppingDistance = 1f;
         //Debug.Log("Normal path");
         if (MoveBack)
         {
@@ -118,7 +117,7 @@ public class Move : MonoBehaviour, IHear
         agent.stoppingDistance = 5f;
         //animator.SetBool("Shoot", true);
         agent.SetDestination(player.position);
-        gun.Shoot();
+        enemyGun.Shoot();
         if (agent.remainingDistance <= agent.stoppingDistance)
             agent.isStopped = true;
         else

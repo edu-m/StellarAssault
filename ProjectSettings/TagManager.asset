@@ -10,6 +10,7 @@ TagManager:
   - LeftShift
   - LeftControl
   - LeftAlt
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Weapon
   - Target
   - Obstruction
-  - 
+  - Enemy
   - 
   - 
   - 

@@ -9,24 +9,26 @@ public class EnemyGun : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GunData gunData;
+    GunSounds gunSound;
     [SerializeField] private Transform muzzle;
     [SerializeField] private GunSounds gunSounds;
     public GameObject m_shotPrefab;
-    GameObject player;
+    public Transform player;
 
    
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        gunSound = GetComponent<GunSounds>();
     }
 
     public void Shoot()
     {
-        muzzle.LookAt(player.transform.position);
-        if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit, gunData.maxDistance))
+        transform.LookAt(player.transform.position);
+        if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit, gunData.maxDistance) && hit.transform.tag!="Enemy")
         {
             GameObject laser = Instantiate(m_shotPrefab, muzzle.position, muzzle.rotation);
+            gunSound.PlayShootSound();
             laser.GetComponent<ShotBehavior>().setTarget(hit.point);
             //TODO: random skew angle within crosshair
             IDamageable damageable = hit.transform.GetComponent<IDamageable>();

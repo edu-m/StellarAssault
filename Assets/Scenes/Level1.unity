@@ -18671,7 +18671,7 @@ GameObject:
   - component: {fileID: 1012005133}
   - component: {fileID: 1012005135}
   - component: {fileID: 1012005134}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: PlayerCam
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -25144,7 +25144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1334692419}
   - component: {fileID: 1334692420}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: WeaponCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33267,7 +33267,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
       propertyPath: m_Name
@@ -33275,7 +33275,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
       propertyPath: m_IsActive
@@ -33283,11 +33283,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100006, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: fb4303299c8780d47a710c146d4246f9, type: 3}
       propertyPath: m_IsActive
