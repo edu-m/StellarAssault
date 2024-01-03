@@ -15,6 +15,7 @@ public class Gun : MonoBehaviour
     public GameObject m_shotPrefab;
     private DisplayAmmo displayAmmo;
     private Slider reloadTimerSlider;
+    private GameObject player;
     
 
     readonly Vector3 UIElementReloadScale = new Vector3(1f, 1f, 0f);
@@ -30,6 +31,7 @@ public class Gun : MonoBehaviour
         PlayerShoot.reloadInput += StartReload;
         displayAmmo.UpdateAmmo(gunData.currentAmmo,gunData.magSize);
         reloadTimerSlider = GameObject.Find("ReloadTimerSlider").GetComponent<Slider>();
+        
     }
 
     private void OnDisable() => gunData.isReloading = false;

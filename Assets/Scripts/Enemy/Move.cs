@@ -14,22 +14,21 @@ public class Move : MonoBehaviour, IHear
     public static bool playerShoots;
     public Transform player;
     public static bool seeAndSeekPlayer;
-    Animator animator;
     EnemyGun enemyGun;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        enemyGun= GetComponent<EnemyGun>();
         
-    }
-    // Start is called before the first frame update
+        enemyGun= GetComponent<EnemyGun>();
 
-    public void Start()
+    }
+
+    private void Start()
     {
         playerShoots = false;
         seeAndSeekPlayer = false;
+        EnemyFieldOfView.canSeePlayer = false;
     }
 
     public void Update()
@@ -45,6 +44,7 @@ public class Move : MonoBehaviour, IHear
         {
             return false;
         }
+        Debug.Log("Player shoots " + playerShoots + "Can see player " + EnemyFieldOfView.canSeePlayer);
         MusicManager.directMode = true;
         return true;
     }
