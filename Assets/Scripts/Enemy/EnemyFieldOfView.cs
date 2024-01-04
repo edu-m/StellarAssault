@@ -41,7 +41,6 @@ public class EnemyFieldOfView : MonoBehaviour
         directionToTarget = (target.position + Vector3.up * 2.5f - transform.position).normalized;
         // Calculate the angle between the reference direction and the direction to the target
         angleToTarget = Vector3.Angle(transform.forward, directionToTarget);
-        // Draw rays using Debug.DrawRay if debug is enabled
         return angleToTarget >= -angle && angleToTarget <= angle;
     }
 
@@ -66,8 +65,7 @@ public class EnemyFieldOfView : MonoBehaviour
         canSeePlayer = !Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask);
     }
 
-
-
+// debug stuff
 #if false
 
     private Vector3 DirectionFromAngle(float eulerY, float angleInDegrees)

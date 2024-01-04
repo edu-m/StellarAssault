@@ -5,11 +5,11 @@ using UnityEngine.AI;
 
 public class EnemyData : MonoBehaviour, IDamageable
 {
+    private const float maxHealth = 100f;
     private Animator animator;
     private ParticleSystem ps;
     private NavMeshAgent agent;
     [SerializeField] public float health;
-    
 
     public void Spawn(Transform spawnPoint)
     {
@@ -24,6 +24,8 @@ public class EnemyData : MonoBehaviour, IDamageable
         if (health <= 0)
             DeathEvent();
     }
+
+    public float GetHealth() => health;
 
     IEnumerator DeathAnimationFade()
     {
@@ -40,10 +42,9 @@ public class EnemyData : MonoBehaviour, IDamageable
         agent.isStopped = true;
         StartCoroutine(DeathAnimationFade());
     }
-
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
+        health = maxHealth;
         ps = GetComponent<ParticleSystem>();
         //ps.gameObject.SetActive(false);
         animator = GetComponent<Animator>();

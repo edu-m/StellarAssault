@@ -19,9 +19,7 @@ public class Move : MonoBehaviour, IHear
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        
         enemyGun= GetComponent<EnemyGun>();
-
     }
 
     private void Start()
@@ -110,11 +108,6 @@ public class Move : MonoBehaviour, IHear
         //animator.SetBool("Shoot", true);
         agent.SetDestination(player.position);
         enemyGun.Shoot();
-        if (agent.remainingDistance <= agent.stoppingDistance)
-            agent.isStopped = true;
-        else
-            agent.isStopped = false;
+        agent.isStopped = agent.remainingDistance <= agent.stoppingDistance;
     }
-
-
 }

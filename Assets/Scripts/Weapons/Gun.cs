@@ -2,11 +2,13 @@ using Assets.Scripts.Weapons;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
+    private static Gun _instance;
     [Header("References")]
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform muzzle;
@@ -22,8 +24,13 @@ public class Gun : MonoBehaviour
 
     float timeSinceLastShot;
 
-    private void Start()
+    private void Awake()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         gunData.currentAmmo = gunData.magSize;
         displayAmmo = GameObject.Find("CrosshairCanvas").GetComponent<DisplayAmmo>();
         PlayerShoot.shootInput += Shoot;
@@ -31,7 +38,6 @@ public class Gun : MonoBehaviour
         PlayerShoot.reloadInput += StartReload;
         displayAmmo.UpdateAmmo(gunData.currentAmmo,gunData.magSize);
         reloadTimerSlider = GameObject.Find("ReloadTimerSlider").GetComponent<Slider>();
-        
     }
 
     private void OnDisable() => gunData.isReloading = false;
@@ -53,6 +59,8 @@ public class Gun : MonoBehaviour
     {
         if (gunData.currentAmmo == gunData.magSize)
             return;
+        if (reloadTimerSlider.IsUnityNull())
+            reloadTimerSlider = GameObject.Find("ReloadTimerSlider").GetComponent<Slider>();
         reloadTimerSlider.transform.localScale = UIElementReloadScale;
         reloadTimerSlider.value = 0;
         StartCoroutine(UpdateUIElementReload());
@@ -81,6 +89,10 @@ public class Gun : MonoBehaviour
 
     private void Shoot()
     {
+        if (cameraPosMuzzle.IsUnityNull())
+            cameraPosMuzzle = GameObject.Find("PlayerCam").transform;
+        if (muzzle.IsUnityNull())
+            muzzle = GameObject.Find("Muzzle").transform;
         if (CanShoot() && Physics.Raycast(cameraPosMuzzle.position, cameraPosMuzzle.forward, out RaycastHit hit, gunData.maxDistance))
         {
             GameObject laser = Instantiate(m_shotPrefab, muzzle.position, muzzle.rotation);
@@ -106,5 +118,10 @@ public class Gun : MonoBehaviour
         gunData.currentAmmo--;
         timeSinceLastShot = 0;
         gunSounds.PlayShootSound();
+    }
+
+    private void OnDestroy()
+    {
+        StopCoroutine(Reload());
     }
 }
