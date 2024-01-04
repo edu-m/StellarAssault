@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
                 PauseGame();
         } 
     }
-    public void PlayGame()
+    public void NextLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
