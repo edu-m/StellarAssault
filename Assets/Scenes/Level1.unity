@@ -33282,7 +33282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 8166176590462582702, guid: 41298a2d4a3a15640be933a841a57b02, type: 3}
   player: {fileID: 2084633312}
-  enemyListCount: 5
+  enemyListCount: 1
   checkPointList:
   - {fileID: 450011873}
   - {fileID: 193303838}
