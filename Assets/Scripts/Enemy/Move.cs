@@ -41,20 +41,12 @@ public class Move : MonoBehaviour, IHear
     public static bool DirectMode()
     {
         if(!playerShoots && !EnemyFieldOfView.canSeePlayer)
-        {
             return false;
-        }
-        Debug.Log("Player shoots " + playerShoots + "Can see player " + EnemyFieldOfView.canSeePlayer);
+        //Debug.Log("Player shoots " + playerShoots + "Can see player " + EnemyFieldOfView.canSeePlayer);
         MusicManager.directMode = true;
         return true;
     }
-    public void RespondToSound(Sound shotSound)
-    {
-        //Debug.Log("Enemy listens to sound and goes straight to player");
-
-            playerShoots = true;
-    }
-
+    public void RespondToSound(Sound shotSound) => playerShoots = true;
     public void ChangeEnemyPath()
     {
         if (!DirectMode() && !seeAndSeekPlayer) //If an enemy has never seen the player and we're not in direct mode

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class EnemyGun : MonoBehaviour
 {
+    float timeSinceLastShot;
     [Header("References")]
     [SerializeField] private GunData gunData;
     GunSounds gunSound;
@@ -22,22 +23,31 @@ public class EnemyGun : MonoBehaviour
         gunSound = GetComponent<GunSounds>();
     }
 
+    private bool CanShoot() => !gunData.isReloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f);
+
+
     public void Shoot()
     {
         transform.LookAt(player.transform.position);
-        if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit, gunData.maxDistance) && hit.transform.tag!="Enemy")
+        if (CanShoot() && Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hit, gunData.maxDistance) && hit.transform.tag!="Enemy")
         {
             GameObject laser = Instantiate(m_shotPrefab, muzzle.position, muzzle.rotation);
             gunSound.PlayShootSound();
             laser.GetComponent<ShotBehavior>().setTarget(hit.point);
-            //TODO: random skew angle within crosshair
             IDamageable damageable = hit.transform.GetComponent<IDamageable>();
             damageable?.Damage(gunData.damage);
             Destroy(laser, 2f);
-            //OnGunShot();
+            OnGunShot();
         }
         
     }
+    private void OnGunShot()
+    {
+        timeSinceLastShot = 0;
+        gunSounds.PlayShootSound();
+    }
+
+    private void Update() => timeSinceLastShot += Time.deltaTime;
 
 
 

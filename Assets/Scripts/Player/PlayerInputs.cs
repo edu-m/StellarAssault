@@ -22,12 +22,9 @@ public class PlayerInputs : MonoBehaviour
     void Start()
     {
         if (FirstTime())
-        {
             ResetDefaultControls();
-        }
         else
             SetControls();
-
     }
 
     public void ResetDefaultControls()
@@ -41,18 +38,11 @@ public class PlayerInputs : MonoBehaviour
 
     }
 
-    public bool FirstTime()
-    {
-        if (!PlayerPrefs.HasKey("Jump"))
-        {
-            return true;
-        }
-        return false;
-    }
+    public bool FirstTime() => !PlayerPrefs.HasKey("Jump");
     public void SaveControl(Button control)
     {
-     PlayerPrefs.SetString(control.transform.parent.name.ToString(), control.tag.ToString());
-     SetControls();
+        PlayerPrefs.SetString(control.transform.parent.name.ToString(), control.tag.ToString());
+        SetControls();
     }
 
     public void SetControls()
@@ -62,6 +52,7 @@ public class PlayerInputs : MonoBehaviour
        sprintKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Sprint"));
        crouchKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Crouch"));
        rollKey = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Roll"));
+
        outputJumpKey.text= jumpKey.ToString();
        outputSprintKey.text = sprintKey.ToString();
        outputCrouchKey.text = crouchKey.ToString();

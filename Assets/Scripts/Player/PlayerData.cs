@@ -15,8 +15,7 @@ public class PlayerData : MonoBehaviour,IDamageable
     void Start()
     {
         hasKeyCard = false;
-        health = 100;
-        
+        health = maxHealth;
     }
 
     public static bool HasKeyCard() => hasKeyCard;
@@ -30,6 +29,9 @@ public class PlayerData : MonoBehaviour,IDamageable
     }
     public void Damage(float damage)
     {
+#if true
+        return;
+#endif
         health -= (int)damage;
         lifeBar.value = health;
         if(health<=0)
