@@ -138,6 +138,7 @@
     <Compile Include="Assets\Scripts\Objects\Door.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Game\Sounds\MusicManager.cs" />
+    <Compile Include="Assets\Scripts\Game\ScoreManager.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerEvents.cs" />
     <Compile Include="Assets\VolumetricLines\Scripts\VolumetricLineVertexData.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IDamageable.cs" />

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerData : MonoBehaviour,IDamageable
 {
-    int health;
+    static int health;
     const int  maxHealth = 100;
     [SerializeField] Slider lifeBar;
 
@@ -19,6 +19,10 @@ public class PlayerData : MonoBehaviour,IDamageable
         
     }
 
+    public static int GetHealth()
+    {
+        return health;
+    }
     public static bool HasKeyCard() => hasKeyCard;
 
     public static void SetKeyCard(bool value) => hasKeyCard = value;

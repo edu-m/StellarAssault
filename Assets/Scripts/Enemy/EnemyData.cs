@@ -8,6 +8,7 @@ public class EnemyData : MonoBehaviour, IDamageable
     private Animator animator;
     private ParticleSystem ps;
     private NavMeshAgent agent;
+    static int numberOfDeadEnemies = 0;
     [SerializeField] public float health;
     
 
@@ -32,6 +33,7 @@ public class EnemyData : MonoBehaviour, IDamageable
         ps.Play();
         yield return new WaitForSeconds(0.1f);
         gameObject.SetActive(false);
+        numberOfDeadEnemies++;
     }
 
     public void DeathEvent()
@@ -47,6 +49,11 @@ public class EnemyData : MonoBehaviour, IDamageable
         //ps.gameObject.SetActive(false);
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+    }
+
+    public static int GetNumberOfDeadEnemies()
+    {
+        return numberOfDeadEnemies;
     }
 
 }
