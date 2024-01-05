@@ -48,7 +48,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+       
         if (!FirstTime())
         {
             if (PlayerPrefs.GetInt("GameCompleted") == 1)//If I have completed the game
@@ -68,10 +68,9 @@ public class MainMenuManager : MonoBehaviour
             PlayerPrefs.SetInt("GameCompleted", 0);
             PlayerPrefs.SetInt("ActualLevel", 1);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + PlayerPrefs.GetInt("ActualLevel"));
-        }    
-        
-            
-            
+        }
+
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
     private bool FirstTime()

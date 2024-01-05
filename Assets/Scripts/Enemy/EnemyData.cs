@@ -17,9 +17,11 @@ public class EnemyData : MonoBehaviour, IDamageable
         transform.rotation = spawnPoint.rotation;
         gameObject.SetActive(true);
     }
-    public void Damage(float damage)
+    public void Damage(int damage)
     {
-        Debug.Log("Damage");
+        
+        damage = (int)Mathf.Ceil(damage * (0.3f * (PlayerPrefs.GetInt("Difficulty") + 1)));
+        Debug.Log("Damage is " + damage);
         health -= damage;
         if (health <= 0)
             DeathEvent();

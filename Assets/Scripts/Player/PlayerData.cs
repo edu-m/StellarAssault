@@ -28,9 +28,11 @@ public class PlayerData : MonoBehaviour,IDamageable
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
-    public void Damage(float damage)
+    public void Damage(int damage)
     {
-        health -= (int)damage;
+        damage = (int)Mathf.Ceil(damage*(0.3f*(PlayerPrefs.GetInt("Difficulty")+1)));
+        Debug.Log("Damage is " + damage);
+        health -= damage;
         lifeBar.value = health;
         if(health<=0)
             DeathEvent();
