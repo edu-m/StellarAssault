@@ -16,13 +16,14 @@ public class EnemyManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        enemyListCount = (int)Mathf.Ceil(enemyListCount * (0.33f * (PlayerPrefs.GetInt("Difficulty") + 1)));
     }
     // Start is called before the first frame update
     public void Start()
     {
         enemyList = new List<GameObject>(enemyListCount);
         //spawnPointList = new List<Transform>(spawnPointCount);
- 
+        Debug.Log("Number of enemies " + enemyListCount);
         for (int i = 0; i < enemyListCount; i++)
         {
             int random = Random.Range(0, checkPointList.Count);

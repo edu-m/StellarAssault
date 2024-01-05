@@ -8,8 +8,6 @@ public class Target : MonoBehaviour, IDamageable
 
     public void Damage(int damage)
     {
-        damage = (int)Mathf.Ceil(damage * (0.3f * (PlayerPrefs.GetInt("Difficulty") + 1)));
-        Debug.Log("Damage is " + damage);
         health -= damage;
         if (health <= 0)
             DeathEvent();
