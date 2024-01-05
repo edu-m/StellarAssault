@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject cameraHolder;
     public GameObject soundsMenu;
     public GameObject controlsMenu;
+    public GameObject winCanvas;
 
     private void Awake()
     {
@@ -44,6 +45,7 @@ public class GameManager : MonoBehaviour
         settingsMenu.SetActive(false);
         soundsMenu.SetActive(false);
         controlsMenu.SetActive(false);
+        winCanvas.SetActive(false);
         cameraHolder.SetActive(true);
     }
 
@@ -60,7 +62,18 @@ public class GameManager : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (PlayerPrefs.GetInt("ActualLevel") != 3)
+        {
+            PlayerPrefs.SetInt("ActualLevel", PlayerPrefs.GetInt("ActualLevel") + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + PlayerPrefs.GetInt("ActualLevel"));
+        }
+        else
+        {
+            winCanvas.SetActive(true);
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+            PlayerPrefs.SetInt("GameCompleted", 1);
+        }
+        
     }
 
     public void PauseGame()
@@ -104,6 +117,11 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         settingsMenu.SetActive(false);
         controlsMenu.SetActive(true);
+    }
+
+    public void GoToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void Back()
