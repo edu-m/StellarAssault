@@ -7,24 +7,24 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     //PlayerData playerData;
-    float stealthModeMaxTime;
-    float stealthModeTimeElapsed = 0f;
-    float stealthModeRemainingTime;
+    const int stealthModeMaxTime = 2400;
+    float stealthModeTimeElapsed = 0;
+    int stealthModeRemainingTime;
+    const int stealthModeMultiplyer = 1000;
+    const int directModeEnemiesMultiplyer = 2000;
+    const int directModePlayerHealthMultiplyer = 1000;
+    int globalActualScore;
 
     int seconds;
     int minutes;
     int hours;
     [SerializeField] TMP_Text outputTimer;
-    [SerializeField] TMP_Text outputNumberOfDeadEnemies;
-    [SerializeField] TMP_Text outputHealth;
+    [SerializeField] TMP_Text outputActualScore;
 
-    private void Awake()
-    {
-       //playerData=GetComponent<PlayerData>(); 
-    }
     // Start is called before the first frame update
     void Start()
     {
+        
         
     }
 
@@ -39,23 +39,31 @@ public class ScoreManager : MonoBehaviour
 
         outputTimer.text = string.Format("{0:0}:{1:00}:{2:00}", hours, minutes, seconds);
 
-        if (Move.DirectMode())
+        if (!Move.DirectMode() && !Move.seeAndSeekPlayer)
+        {
+            StealthModeScore();
+        }
+        else
         {
             outputTimer.text = "";
-            outputHealth.text = System.Convert.ToString(PlayerData.GetHealth());
-            outputNumberOfDeadEnemies.text= System.Convert.ToString(EnemyData.GetNumberOfDeadEnemies());
-
+            DirectModeScore();
         }
+           
            
     }
 
     public void StealthModeScore()
     {
-
+        stealthModeRemainingTime = stealthModeMaxTime - seconds;
+        globalActualScore = stealthModeRemainingTime * stealthModeMultiplyer;
+        outputActualScore.text = System.Convert.ToString(globalActualScore);
     }
 
     public void DirectModeScore() 
     {
-
+        
+        globalActualScore = EnemyData.GetNumberOfDeadEnemies() * directModeEnemiesMultiplyer + PlayerData.GetHealth() * directModePlayerHealthMultiplyer;
+        Debug.Log("Direct Mode Score " + globalActualScore);
+        outputActualScore.text = System.Convert.ToString(globalActualScore);
     }
 }
