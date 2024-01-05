@@ -121,6 +121,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToMainMenu()
     {
+        winCanvas.SetActive(false);
         SceneManager.LoadScene(0);
     }
 
