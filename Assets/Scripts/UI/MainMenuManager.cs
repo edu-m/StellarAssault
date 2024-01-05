@@ -48,11 +48,13 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         if (!FirstTime())
         {
             if (PlayerPrefs.GetInt("GameCompleted") == 1)//If I have completed the game
             {
                 PlayerPrefs.SetInt("ActualLevel", 1);
+                PlayerPrefs.SetInt("GameCompleted", 0);
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + PlayerPrefs.GetInt("ActualLevel"));//Then I will consult
                 //an integer with a different key, like "Difficulty", to have different settings
             }
