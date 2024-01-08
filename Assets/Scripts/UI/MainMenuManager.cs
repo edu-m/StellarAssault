@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject credits;
     public GameObject difficultyMenu;
+    public TMP_InputField playerName;
     public static MainMenuManager Instance
     {
         get
@@ -85,21 +87,26 @@ public class MainMenuManager : MonoBehaviour
     public void SetDifficulty(int difficulty)
     {
         PlayerPrefs.SetInt("Difficulty", difficulty);
+        Debug.Log("Player name is " + PlayerPrefs.GetString("PlayerName"));
         StartGame();
     }
 
-    public void GoToSettings()
+    public void SetPlayerName()
     {
-        settingsMenu.SetActive(true);
-        mainMenu.SetActive(false);
+        PlayerPrefs.SetString("PlayerName", playerName.text);
     }
 
-    public void GoToCredits()
+    public void SetPlayerNameText() 
     {
-        credits.SetActive(true);
-        mainMenu.SetActive(false);
+        if (PlayerPrefs.HasKey("PlayerName"))
+            playerName.text = PlayerPrefs.GetString("PlayerName");
+        else 
+        {
+            playerName.text = "None";
+            PlayerPrefs.SetString("PlayerName", playerName.text);
+        }
+            
     }
-
     public void BackToMenu()
     {
         mainMenu.SetActive(true);

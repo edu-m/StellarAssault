@@ -7,6 +7,19 @@ using UnityEngine.UI;
 public class ScoreManager : MonoBehaviour
 {
     //PlayerData playerData;
+    private static ScoreManager _instance;
+    public static ScoreManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = FindObjectOfType<ScoreManager>();
+            if (_instance == null)
+                Debug.LogError("No GameManager in scene");
+            return _instance;
+        }
+    }
+    public GameObject scoreBox;
     const int stealthModeMaxTime = 2400;
     float stealthModeTimeElapsed = 0;
     int stealthModeRemainingTime;
@@ -21,6 +34,20 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TMP_Text outputTimer;
     [SerializeField] TMP_Text outputActualScore;
 
+    public List<Score> scores;
+
+    private void Awake()
+    {
+        scores=new List<Score>();
+
+        if (_instance == null)
+        {
+            _instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+            Destroy(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +79,10 @@ public class ScoreManager : MonoBehaviour
            
     }
 
+    public int GetGlobalActualScore()
+    {
+        return globalActualScore;
+    }
     public void StealthModeScore()
     {
         stealthModeRemainingTime = stealthModeMaxTime - seconds;
