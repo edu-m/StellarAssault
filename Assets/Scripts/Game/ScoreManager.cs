@@ -55,7 +55,11 @@ public class ScoreManager : MonoBehaviour
     public void StealthModeScore()
     {
         stealthModeRemainingTime = stealthModeMaxTime - seconds;
-        globalActualScore = stealthModeRemainingTime * stealthModeMultiplyer;
+        if (stealthModeRemainingTime > 0)
+            globalActualScore = stealthModeRemainingTime * stealthModeMultiplyer;
+        else
+            globalActualScore = 3000;
+
         outputActualScore.text = System.Convert.ToString(globalActualScore);
     }
 
