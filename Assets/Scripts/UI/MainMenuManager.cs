@@ -11,7 +11,11 @@ public class MainMenuManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject credits;
     public GameObject difficultyMenu;
+    public GameObject scoreBox;
+    public TextMeshProUGUI scoreText;
     public TMP_InputField playerName;
+
+    List<Score> scores;
     public static MainMenuManager Instance
     {
         get
@@ -41,6 +45,8 @@ public class MainMenuManager : MonoBehaviour
         {
             GameObject.Destroy(this.gameObject);
         }
+
+        scores= new List<Score>();
     }
     // Start is called before the first frame update
     void Start()
@@ -107,11 +113,27 @@ public class MainMenuManager : MonoBehaviour
         }
             
     }
+
+    public void ShowScoreBox()
+    {
+        scores=FileHandler.ReadListFromJSON<Score>("scoreBox");
+        foreach(Score score in scores)
+        {
+
+            if (!score.playerScoreMode)
+                scoreText.text = scoreText.text + score.playerName + " " + score.playerScore + " Level " +
+                score.playerLevel + " Stealth Mode" + "\n";
+            else
+                scoreText.text = scoreText.text + score.playerName + " " + score.playerScore + " Level " +
+                score.playerLevel + " Direct Mode" + "\n";
+        }
+    }
     public void BackToMenu()
     {
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
         credits.SetActive(false);
+        scoreBox.SetActive(false);
     }
 
     public void QuitGame()

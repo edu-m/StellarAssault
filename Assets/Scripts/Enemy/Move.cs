@@ -34,6 +34,7 @@ public class Move : MonoBehaviour, IHear
     public void Update()
     {
         ChangeEnemyPath();
+        StartCoroutine(SaveDebugRoutine());
     }
 
 
@@ -88,6 +89,16 @@ public class Move : MonoBehaviour, IHear
         }
            
     
+    }
+
+    private IEnumerator SaveDebugRoutine()
+    {
+        yield return new WaitForSeconds(60);
+        Debug.Log("Saved");
+        ScoreManager.Instance.scores.Add(new Score(PlayerPrefs.GetString("PlayerName"), ScoreManager.Instance.GetGlobalActualScore(), PlayerPrefs.GetInt("ActualLevel"), Move.seeAndSeekPlayer));
+        FileHandler.SaveToJSON<Score>(ScoreManager.Instance.scores, "scoreBox");
+        Debug.Log("Saved");
+
     }
 
     public void NormalPath()
