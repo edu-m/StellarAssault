@@ -1,52 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class PlayerData : MonoBehaviour,IDamageable
+public class PlayerData : MonoBehaviour
 {
+    private static PlayerData _instance;
     int health;
-    const int maxHealth = 100;
+    public const int maxHealth = 100;
     [SerializeField] Slider lifeBar;
-
-    private static bool hasKeyCard;
+    private static bool hasObject;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        if (_instance == null)
+            _instance = this;
+    }
+
+    public static PlayerData Instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = FindObjectOfType<PlayerData>();
+            return _instance;
+        }
+    }
     void Start()
     {
-        hasKeyCard = false;
         health = maxHealth;
     }
-    public int GetMaxHealth()
+
+    private void Update()
     {
-        return maxHealth;
-    }
-
-    public static bool HasKeyCard() => hasKeyCard;
-
-    public static void SetKeyCard(bool value) => hasKeyCard = value;
-
-    public void StartAgain()
-    {   
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-    }
-    public void Damage(float damage)
-    {
-// should remove... Only for debug!
-#if false
-        return;
-#endif
-        health -= (int)damage;
         lifeBar.value = health;
-        if(health<=0)
-            DeathEvent();
     }
-    public void DeathEvent()
+
+    public static bool HasObject() => hasObject;
+
+    public static void SetObject(bool value) => hasObject = value;
+
+    public void Heal(int amount)
     {
-        Debug.Log("Player is dead");
-        StartAgain();
+        if (health + amount <= maxHealth)
+            health += amount;
+        else health = maxHealth;
     }
-
-
 }

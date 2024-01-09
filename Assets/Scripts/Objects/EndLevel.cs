@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class EndLevel : MonoBehaviour, IInteractable
 {
-    public string GetDescription() 
+    [SerializeField] bool shouldHaveObject;
+    public string GetDescription()
     {
         return "Interact";
     }
-
     public void Interact()
     {
         SaveToList();
         GameManager.Instance.PlayGame();
+        if (PlayerData.HasObject() == shouldHaveObject)
+            InteractWithConstraint();
     }
 
     public void SaveToList()

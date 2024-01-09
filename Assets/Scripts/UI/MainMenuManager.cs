@@ -16,6 +16,7 @@ public class MainMenuManager : MonoBehaviour
     public TMP_InputField playerName;
 
     List<Score> scores;
+    public List<GameObject> tutorialSlideList;
     public static MainMenuManager Instance
     {
         get
@@ -130,7 +131,29 @@ public class MainMenuManager : MonoBehaviour
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
         credits.SetActive(false);
-        scoreBox.SetActive(false);
+        tutorialSlideList.ForEach(t => { t.SetActive(false); });
+    }
+
+    public void GoToTutorial()
+    {
+        tutorialSlideList[0].SetActive(true);
+        mainMenu.SetActive(false);
+    }
+
+    public void NextSlide(int index)
+    {
+        tutorialSlideList[index - 1].SetActive(false);
+        tutorialSlideList[index].SetActive(true);
+    }
+    public void PreviousSlide(int index)
+    {
+        tutorialSlideList[index + 1].SetActive(false);
+        tutorialSlideList[index].SetActive(true);
+    }
+
+    public void GoToDestination(GameObject destination)
+    {
+        destination.SetActive(true);
     }
 
     public void QuitGame()

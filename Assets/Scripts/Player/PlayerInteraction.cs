@@ -10,7 +10,6 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject interactionUI;
     public TextMeshProUGUI interactionText;
     public TextMeshProUGUI keyCodeText;
-    public KeyCode interactKey = KeyCode.E;
 
     private void Update()
     {
@@ -32,9 +31,9 @@ public class PlayerInteraction : MonoBehaviour
             if (hit.collider.TryGetComponent<IInteractable>(out var interactable) && hit.distance < interactionDistance) 
             {
                 hitSomething = true;
-                keyCodeText.text = interactKey.ToString();
+                keyCodeText.text = PlayerInputs.interactKey.ToString();
                 interactionText.text = interactable.GetDescription();
-                if (Input.GetKeyDown(interactKey))
+                if (Input.GetKeyDown(PlayerInputs.interactKey))
                     interactable.Interact();
             }
                 interactionUI.SetActive(hitSomething);
