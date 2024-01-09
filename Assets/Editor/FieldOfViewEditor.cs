@@ -13,7 +13,7 @@ public class NewBehaviourScript : Editor
         float angleOffset = 20f;
         EnemyFieldOfView fov = (EnemyFieldOfView)target;
         Handles.color=Color.white;
-#if false
+#if true
         Handles.DrawWireArc(fov.transform.position + new Vector3(0,angleOffset,0), Vector3.up, Vector3.forward, 360, fov.radius);
         Handles.DrawWireArc(fov.transform.position + new Vector3(0, -angleOffset, 0), Vector3.up, Vector3.forward, 360, fov.radius);
 

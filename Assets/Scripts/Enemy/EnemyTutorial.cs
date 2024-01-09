@@ -9,6 +9,6 @@ public class EnemyTutorial : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        animator.SetBool("aiming", true);
+        animator.SetBool("Aiming", true);
     }
 }

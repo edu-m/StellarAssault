@@ -97,7 +97,7 @@ public class ScoreManager : MonoBehaviour
     public void DirectModeScore() 
     {
         
-        globalActualScore = EnemyData.GetNumberOfDeadEnemies() * directModeEnemiesMultiplyer + PlayerData.GetHealth() * directModePlayerHealthMultiplyer;
+        globalActualScore = EnemyData.GetNumberOfDeadEnemies() * directModeEnemiesMultiplyer + PlayerData.Instance.GetHealth() * directModePlayerHealthMultiplyer;
         Debug.Log("Direct Mode Score " + globalActualScore);
         outputActualScore.text = System.Convert.ToString(globalActualScore);
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor.Build.Player;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
@@ -33,8 +34,6 @@ public class Move : MonoBehaviour, IHear
     {
         ChangeEnemyPath();
     }
-
-
 
     public static bool DirectMode()
     {
@@ -68,16 +67,9 @@ public class Move : MonoBehaviour, IHear
     
     private IEnumerator ShootRoutine()
     {
-        //Debug.Log("Enter Shootroutine");
         Shooting();
         if (!EnemyFieldOfView.canSeePlayer)
-        {
-            //Debug.Log("Exit Shootroutine");
-            //animator.SetBool("Shoot", false);
             yield break;
-        }
-           
-    
     }
 
     public void NormalPath()
@@ -103,9 +95,7 @@ public class Move : MonoBehaviour, IHear
 
     public void Shooting()
     {
-        //Debug.Log("Enter Shooting");
         agent.stoppingDistance = 5f;
-        //animator.SetBool("Shoot", true);
         agent.SetDestination(player.position);
         enemyGun.Shoot();
         agent.isStopped = agent.remainingDistance <= agent.stoppingDistance;

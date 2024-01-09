@@ -16,14 +16,13 @@ public class MainMenuManager : MonoBehaviour
     public TMP_InputField playerName;
 
     List<Score> scores;
-    public List<GameObject> tutorialSlideList;
     public static MainMenuManager Instance
     {
         get
         {
             if (_instance == null)
             {
-                _instance = GameObject.FindObjectOfType<MainMenuManager>();
+                _instance = FindObjectOfType<MainMenuManager>();
 
             }
             if (_instance == null)
@@ -44,7 +43,7 @@ public class MainMenuManager : MonoBehaviour
         }
         else
         {
-            GameObject.Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
 
         scores= new List<Score>();
@@ -52,7 +51,7 @@ public class MainMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BackToMenu();
+        ToMenu();
     }
 
     public void StartGame()
@@ -126,34 +125,11 @@ public class MainMenuManager : MonoBehaviour
                  score.playerLevel + " Difficulty " + score.playerDifficulty + " Direct Mode" + "\n";
         }
     }
-    public void BackToMenu()
+    public void ToMenu()
     {
         mainMenu.SetActive(true);
         settingsMenu.SetActive(false);
         credits.SetActive(false);
-        tutorialSlideList.ForEach(t => { t.SetActive(false); });
-    }
-
-    public void GoToTutorial()
-    {
-        tutorialSlideList[0].SetActive(true);
-        mainMenu.SetActive(false);
-    }
-
-    public void NextSlide(int index)
-    {
-        tutorialSlideList[index - 1].SetActive(false);
-        tutorialSlideList[index].SetActive(true);
-    }
-    public void PreviousSlide(int index)
-    {
-        tutorialSlideList[index + 1].SetActive(false);
-        tutorialSlideList[index].SetActive(true);
-    }
-
-    public void GoToDestination(GameObject destination)
-    {
-        destination.SetActive(true);
     }
 
     public void QuitGame()

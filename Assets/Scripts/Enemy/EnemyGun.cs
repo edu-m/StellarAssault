@@ -19,6 +19,7 @@ public class EnemyGun : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.Find("Player").transform;
         enemyData = GetComponent<EnemyData>();
         gunSound = GetComponent<GunSounds>();
     }
@@ -36,7 +37,7 @@ public class EnemyGun : MonoBehaviour
             gunSound.PlayShootSound();
             laser.GetComponent<ShotBehavior>().setTarget(hit.point);
             IDamageable damageable = hit.transform.GetComponent<IDamageable>();
-            damageable?.Damage(gunData.damage + UnityEngine.Random.value);
+            damageable?.Damage(gunData.damage);
             Destroy(laser, 2f);
             OnGunShot();
         }

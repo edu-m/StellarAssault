@@ -12,10 +12,12 @@ public class EndLevel : MonoBehaviour, IInteractable
     public void Interact()
     {
         SaveToList();
-        GameManager.Instance.PlayGame();
+        GameManager.Instance.NextLevel();
         if (PlayerData.HasObject() == shouldHaveObject)
             InteractWithConstraint();
     }
+
+    public void InteractWithConstraint() => GameManager.Instance.NextLevel();
 
     public void SaveToList()
     {
