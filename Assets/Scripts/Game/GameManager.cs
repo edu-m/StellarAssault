@@ -58,9 +58,9 @@ public class GameManager : MonoBehaviour
                 PauseGame();
         } 
     }
-    public void PlayGame()
+    public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void PauseGame()
@@ -81,47 +81,6 @@ public class GameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
-    }
-
-    public void GoToSettings()
-    {
-        //Time.timeScale = 0f;
-        pauseMenu.SetActive(false);
-        settingsMenu.SetActive(true);
-    }
-
-    public void GoToSounds()
-    {
-        //Time.timeScale = 0f;
-        pauseMenu.SetActive(false);
-        settingsMenu.SetActive(false);
-        soundsMenu.SetActive(true);
-    }
-
-    public void GoToControls()
-    {
-        //Time.timeScale = 0f;
-        pauseMenu.SetActive(false);
-        settingsMenu.SetActive(false);
-        controlsMenu.SetActive(true);
-    }
-
-    public void Back()
-    {
-        if (settingsMenu.activeInHierarchy==true){        
-                pauseMenu.SetActive(true);
-                settingsMenu.SetActive(false);
-        }
-        else if (soundsMenu.activeInHierarchy == true)
-            {
-               settingsMenu.SetActive(true);
-               soundsMenu.SetActive(false);
-            }
-        else if (controlsMenu.activeInHierarchy == true)
-        {
-            settingsMenu.SetActive(true);
-            controlsMenu.SetActive(false);
-        }
     }
 
     public void QuitGame()

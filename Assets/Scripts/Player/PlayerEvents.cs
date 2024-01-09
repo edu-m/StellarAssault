@@ -10,7 +10,7 @@ public class PlayerEvent : MonoBehaviour
         // This is a debug event. Remove in final release!
         if(Input.GetKeyDown(KeyCode.F))
         {
-            _object.transform.SetPositionAndRotation(transform.position,transform.rotation);
+            _object.transform.position = gameObject.transform.position;
         }
     }
 

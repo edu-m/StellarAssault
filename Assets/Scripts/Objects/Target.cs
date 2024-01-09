@@ -6,7 +6,7 @@ public class Target : MonoBehaviour, IDamageable
 {
     [SerializeField] public float health;
 
-    public void Damage(float damage)
+    public void Damage(int damage)
     {
         health -= damage;
         if (health <= 0)

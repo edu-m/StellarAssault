@@ -243,6 +243,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3721362745143277307, guid: 4ac7dd8f9cc7f83488dd984cd4943981, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00000166893
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721362745143277307, guid: 4ac7dd8f9cc7f83488dd984cd4943981, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00000023841858
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721362745143277307, guid: 4ac7dd8f9cc7f83488dd984cd4943981, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.2199998
+      objectReference: {fileID: 0}
     - target: {fileID: 3809122656040381100, guid: 4ac7dd8f9cc7f83488dd984cd4943981, type: 3}
       propertyPath: m_Name
       value: WallWithLights
@@ -428,6 +440,18 @@ PrefabInstance:
     - target: {fileID: 161343507924134625, guid: 4ac7dd8f9cc7f83488dd984cd4943981, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721362745143277307, guid: 4ac7dd8f9cc7f83488dd984cd4943981, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000002861023
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721362745143277307, guid: 4ac7dd8f9cc7f83488dd984cd4943981, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000011920929
+      objectReference: {fileID: 0}
+    - target: {fileID: 3721362745143277307, guid: 4ac7dd8f9cc7f83488dd984cd4943981, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.2199984
       objectReference: {fileID: 0}
     - target: {fileID: 3809122656040381100, guid: 4ac7dd8f9cc7f83488dd984cd4943981, type: 3}
       propertyPath: m_Name

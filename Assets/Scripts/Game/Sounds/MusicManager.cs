@@ -28,7 +28,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip directModeMusic;
     // game can be played both in "stealth mode" and "direct mode"
     // the music will change accordingly
-    [SerializeField] public bool directMode;
+    [SerializeField] public static bool directMode;
     
     IEnumerator ChangeMusic()
     {
@@ -39,6 +39,7 @@ public class MusicManager : MonoBehaviour
        // play direct music
         audioSource.clip = directModeMusic;
         audioSource.Play();
+        yield return new WaitUntil(() => !directMode);
     }
     private void Awake()
     {
