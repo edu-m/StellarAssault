@@ -47,7 +47,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void StartGame()
     {
-       
         if (!FirstTime())
         {
             if (PlayerPrefs.GetInt("GameCompleted") == 1)//If I have completed the game
@@ -66,7 +65,7 @@ public class MainMenuManager : MonoBehaviour
         {
             PlayerPrefs.SetInt("GameCompleted", 0);
             PlayerPrefs.SetInt("ActualLevel", 1);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + PlayerPrefs.GetInt("ActualLevel"));
+            SceneManager.LoadScene(PlayerPrefs.GetInt("ActualLevel"));
         }
 
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
@@ -99,7 +98,6 @@ public class MainMenuManager : MonoBehaviour
         scores=FileHandler.ReadListFromJSON<Score>("scoreBox");
         foreach(Score score in scores)
         {
-            
             if (!score.playerScoreMode)
                 scoreText.text = scoreText.text + score.playerName + " " + score.playerScore + " Level " +
                 score.playerLevel + " Difficulty " + score.playerDifficulty + " Stealth Mode" + "\n";

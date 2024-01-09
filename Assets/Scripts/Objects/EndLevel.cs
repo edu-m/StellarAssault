@@ -11,14 +11,16 @@ public class EndLevel : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        SaveToList();
         GameManager.Instance.NextLevel();
         if (PlayerData.HasObject() == shouldHaveObject)
             InteractWithConstraint();
     }
 
-    public void InteractWithConstraint() => GameManager.Instance.NextLevel();
-
+    public void InteractWithConstraint()
+    {
+        SaveToList();
+        GameManager.Instance.NextLevel();
+    }
     public void SaveToList()
     {
         ScoreManager.Instance.scores = FileHandler.ReadListFromJSON<Score>("scoreBox");

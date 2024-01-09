@@ -60,7 +60,15 @@ public class GameManager : MonoBehaviour
     }
     public void NextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        if (PlayerPrefs.GetInt("ActualLevel") == 3)
+        {
+            PlayerPrefs.SetInt("GameCompleted", 1);
+            PlayerPrefs.SetInt("ActualLevel", 1);
+            SceneManager.LoadScene(0);
+            return;
+        }
+        PlayerPrefs.SetInt("ActualLevel", SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(PlayerPrefs.GetInt("ActualLevel"));
     }
 
     public void PauseGame()
