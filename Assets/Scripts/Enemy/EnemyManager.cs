@@ -33,7 +33,6 @@ public class EnemyManager : MonoBehaviour
             enemyList.Add(tempEnemy);
             enemyList[i].GetComponent<Move>().pointA = pointA; 
             enemyList[i].GetComponent<Move>().pointB = pointB;
-            enemyList[i].GetComponent<Move>().player = player;
             enemyList[i].GetComponent<EnemyGun>().player = player;
             enemyList[i].SetActive(false);
            }

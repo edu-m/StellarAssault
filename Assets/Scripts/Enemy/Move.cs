@@ -25,15 +25,13 @@ public class Move : MonoBehaviour, IHear
 
     private void Start()
     {
+        player = GameObject.Find("Player").transform;
         playerShoots = false;
         seeAndSeekPlayer = false;
         EnemyFieldOfView.canSeePlayer = false;
     }
 
-    public void Update()
-    {
-        ChangeEnemyPath();
-    }
+    public void Update() => ChangeEnemyPath();
 
     public static bool DirectMode()
     {
@@ -63,8 +61,6 @@ public class Move : MonoBehaviour, IHear
             StartCoroutine(ShootRoutine());//If the enemy can see the player
         }
     }
-    
-    
     private IEnumerator ShootRoutine()
     {
         Shooting();

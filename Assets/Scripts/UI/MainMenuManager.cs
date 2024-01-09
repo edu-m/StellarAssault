@@ -21,15 +21,9 @@ public class MainMenuManager : MonoBehaviour
         get
         {
             if (_instance == null)
-            {
                 _instance = FindObjectOfType<MainMenuManager>();
-
-            }
             if (_instance == null)
-            {
                 Debug.LogError("No MainMenuManager in scene");
-
-            }
             return _instance;
         }
     }
@@ -49,10 +43,7 @@ public class MainMenuManager : MonoBehaviour
         scores= new List<Score>();
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        ToMenu();
-    }
+    void Start() => ToMenu();
 
     public void StartGame()
     {
@@ -81,23 +72,15 @@ public class MainMenuManager : MonoBehaviour
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
-    private bool FirstTime()
-    {
-        if (!PlayerPrefs.HasKey("GameCompleted"))
-            return true;
-        return false;
-    }
+    private bool FirstTime() => !PlayerPrefs.HasKey("GameCompleted");
     public void SetDifficulty(int difficulty)
     {
         PlayerPrefs.SetInt("Difficulty", difficulty);
-        Debug.Log("Player name is " + PlayerPrefs.GetString("PlayerName"));
+        //Debug.Log("Player name is " + PlayerPrefs.GetString("PlayerName"));
         StartGame();
     }
 
-    public void SetPlayerName()
-    {
-        PlayerPrefs.SetString("PlayerName", playerName.text);
-    }
+    public void SetPlayerName() => PlayerPrefs.SetString("PlayerName", playerName.text);
 
     public void SetPlayerNameText() 
     {
@@ -132,8 +115,5 @@ public class MainMenuManager : MonoBehaviour
         credits.SetActive(false);
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+    public void QuitGame() => Application.Quit();
 }

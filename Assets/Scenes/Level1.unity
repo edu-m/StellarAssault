@@ -4749,7 +4749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f263b8b02546254aa3558869bf2036e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stealthModeMusic: {fileID: 0}
+  stealthModeMusic: {fileID: 8300000, guid: eb871447d77242843a61abb34ef7cb46, type: 3}
   directModeMusic: {fileID: 0}
 --- !u!4 &242601638
 Transform:
@@ -40188,7 +40188,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084633310}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d681d1296771b4545b9b1f287a9a4101, type: 3}
   m_Name: 

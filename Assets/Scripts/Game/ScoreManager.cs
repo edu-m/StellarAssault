@@ -48,13 +48,7 @@ public class ScoreManager : MonoBehaviour
         else
             Destroy(gameObject);
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-        
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -75,8 +69,6 @@ public class ScoreManager : MonoBehaviour
             outputTimer.text = "";
             DirectModeScore();
         }
-           
-           
     }
 
     public int GetGlobalActualScore()
@@ -96,9 +88,8 @@ public class ScoreManager : MonoBehaviour
 
     public void DirectModeScore() 
     {
-        
         globalActualScore = EnemyData.GetNumberOfDeadEnemies() * directModeEnemiesMultiplyer + PlayerData.Instance.GetHealth() * directModePlayerHealthMultiplyer;
-        Debug.Log("Direct Mode Score " + globalActualScore);
+        //Debug.Log("Direct Mode Score " + globalActualScore);
         outputActualScore.text = System.Convert.ToString(globalActualScore);
     }
 }

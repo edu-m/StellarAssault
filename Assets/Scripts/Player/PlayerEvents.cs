@@ -10,7 +10,7 @@ public class PlayerEvent : MonoBehaviour
         // This is a debug event. Remove in final release!
         if(Input.GetKeyDown(KeyCode.F))
         {
-            PlayerData.Instance.Damage(PlayerData.maxHealth);
+            _object.transform.position = gameObject.transform.position;
         }
     }
 
