@@ -6996,6 +6996,7 @@ MonoBehaviour:
   outputSprintKey: {fileID: 201209380}
   outputCrouchKey: {fileID: 1612568714}
   outputRollKey: {fileID: 1688927101}
+  outputInteractKey: {fileID: 1355879407}
 --- !u!4 &378581463
 Transform:
   m_ObjectHideFlags: 0
@@ -25251,6 +25252,34 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5477059389768251187, guid: 956cde4c30465d14ca01ed758c759bce, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.543
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477059389768251187, guid: 956cde4c30465d14ca01ed758c759bce, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.725
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477059389768251187, guid: 956cde4c30465d14ca01ed758c759bce, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9903973
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477059389768251187, guid: 956cde4c30465d14ca01ed758c759bce, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477059389768251187, guid: 956cde4c30465d14ca01ed758c759bce, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.13825111
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477059389768251187, guid: 956cde4c30465d14ca01ed758c759bce, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477059389768251187, guid: 956cde4c30465d14ca01ed758c759bce, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 15.893
+      objectReference: {fileID: 0}
     - target: {fileID: 8195761645016882532, guid: 956cde4c30465d14ca01ed758c759bce, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -33224,7 +33253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f460df2f8b8b6f4a99b8b55aee53497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 8166176590462582702, guid: 41298a2d4a3a15640be933a841a57b02, type: 3}
+  enemy: {fileID: 8166176590462582702, guid: 38ac1a2dbfaf1be4db17ee3801e5f665, type: 3}
   enemyListCount: 1
   checkPointList:
   - {fileID: 450011873}
@@ -37569,7 +37598,6 @@ MonoBehaviour:
   interactionUI: {fileID: 1275617254}
   interactionText: {fileID: 117291372}
   keyCodeText: {fileID: 1355879407}
-  interactKey: 101
 --- !u!1 &2087442991
 GameObject:
   m_ObjectHideFlags: 0
