@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Build.Player;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
@@ -21,24 +22,18 @@ public class Move : MonoBehaviour, IHear
         agent = GetComponent<NavMeshAgent>();
         
         enemyGun= GetComponent<EnemyGun>();
-
     }
-
     private void Start()
     {
         playerShoots = false;
         seeAndSeekPlayer = false;
         EnemyFieldOfView.canSeePlayer = false;
     }
-
     public void Update()
     {
         ChangeEnemyPath();
-        StartCoroutine(SaveDebugRoutine());
+        
     }
-
-
-
     public static bool DirectMode()
     {
         if(!playerShoots && !EnemyFieldOfView.canSeePlayer)
@@ -75,8 +70,6 @@ public class Move : MonoBehaviour, IHear
             StartCoroutine(ShootRoutine());//If the enemy can see the player
         }
     }
-    
-    
     private IEnumerator ShootRoutine()
     {
         //Debug.Log("Enter Shootroutine");
@@ -87,20 +80,7 @@ public class Move : MonoBehaviour, IHear
             //animator.SetBool("Shoot", false);
             yield break;
         }
-           
-    
     }
-
-    private IEnumerator SaveDebugRoutine()
-    {
-        yield return new WaitForSeconds(60);
-        Debug.Log("Saved");
-        ScoreManager.Instance.scores.Add(new Score(PlayerPrefs.GetString("PlayerName"), ScoreManager.Instance.GetGlobalActualScore(), PlayerPrefs.GetInt("ActualLevel"), Move.seeAndSeekPlayer));
-        FileHandler.SaveToJSON<Score>(ScoreManager.Instance.scores, "scoreBox");
-        Debug.Log("Saved");
-
-    }
-
     public void NormalPath()
     {
         agent.stoppingDistance = 1f;
@@ -121,7 +101,6 @@ public class Move : MonoBehaviour, IHear
                 MoveBack = true;
         }
     }
-
     public void Shooting()
     {
         //Debug.Log("Enter Shooting");
@@ -135,5 +114,6 @@ public class Move : MonoBehaviour, IHear
             agent.isStopped = false;
     }
 
+    
 
 }

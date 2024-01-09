@@ -87,9 +87,6 @@ public class MainMenuManager : MonoBehaviour
             return true;
         return false;
     }
-
-
-
     public void SetDifficulty(int difficulty)
     {
         PlayerPrefs.SetInt("Difficulty", difficulty);
@@ -119,13 +116,13 @@ public class MainMenuManager : MonoBehaviour
         scores=FileHandler.ReadListFromJSON<Score>("scoreBox");
         foreach(Score score in scores)
         {
-
+            
             if (!score.playerScoreMode)
                 scoreText.text = scoreText.text + score.playerName + " " + score.playerScore + " Level " +
-                score.playerLevel + " Stealth Mode" + "\n";
+                score.playerLevel + " Difficulty " + score.playerDifficulty + " Stealth Mode" + "\n";
             else
                 scoreText.text = scoreText.text + score.playerName + " " + score.playerScore + " Level " +
-                score.playerLevel + " Direct Mode" + "\n";
+                 score.playerLevel + " Difficulty " + score.playerDifficulty + " Direct Mode" + "\n";
         }
     }
     public void BackToMenu()
