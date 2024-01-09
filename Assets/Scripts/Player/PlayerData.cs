@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class PlayerData : MonoBehaviour,IDamageable
 {
-    static int health;
-    const int  maxHealth = 100;
+    int health;
+    const int maxHealth = 100;
     [SerializeField] Slider lifeBar;
 
     private static bool hasKeyCard;
@@ -15,14 +15,13 @@ public class PlayerData : MonoBehaviour,IDamageable
     void Start()
     {
         hasKeyCard = false;
-        health = 100;
-        
+        health = maxHealth;
+    }
+    public int GetMaxHealth()
+    {
+        return maxHealth;
     }
 
-    public static int GetHealth()
-    {
-        return health;
-    }
     public static bool HasKeyCard() => hasKeyCard;
 
     public static void SetKeyCard(bool value) => hasKeyCard = value;
@@ -32,11 +31,13 @@ public class PlayerData : MonoBehaviour,IDamageable
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     }
-    public void Damage(int damage)
+    public void Damage(float damage)
     {
-        damage = (int)Mathf.Ceil(damage*(0.33f*(PlayerPrefs.GetInt("Difficulty")+1)));
-        Debug.Log("Damage is " + damage);
-        health -= damage;
+// should remove... Only for debug!
+#if false
+        return;
+#endif
+        health -= (int)damage;
         lifeBar.value = health;
         if(health<=0)
             DeathEvent();

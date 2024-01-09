@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LaserRifle
   m_EditorClassIdentifier: 
   name: Laser Rifle
-  damage: 10
+  damage: 50
   maxDistance: 200
   currentAmmo: 31
   magSize: 31

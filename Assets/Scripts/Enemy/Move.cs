@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Build.Player;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
@@ -20,37 +19,32 @@ public class Move : MonoBehaviour, IHear
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        
         enemyGun= GetComponent<EnemyGun>();
     }
+
     private void Start()
     {
         playerShoots = false;
         seeAndSeekPlayer = false;
         EnemyFieldOfView.canSeePlayer = false;
     }
+
     public void Update()
     {
         ChangeEnemyPath();
-        
     }
+
+
+
     public static bool DirectMode()
     {
         if(!playerShoots && !EnemyFieldOfView.canSeePlayer)
-        {
             return false;
-        }
-        Debug.Log("Player shoots " + playerShoots + "Can see player " + EnemyFieldOfView.canSeePlayer);
+        //Debug.Log("Player shoots " + playerShoots + "Can see player " + EnemyFieldOfView.canSeePlayer);
         MusicManager.directMode = true;
         return true;
     }
-    public void RespondToSound(Sound shotSound)
-    {
-        //Debug.Log("Enemy listens to sound and goes straight to player");
-
-            playerShoots = true;
-    }
-
+    public void RespondToSound(Sound shotSound) => playerShoots = true;
     public void ChangeEnemyPath()
     {
         if (!DirectMode() && !seeAndSeekPlayer) //If an enemy has never seen the player and we're not in direct mode
@@ -70,6 +64,8 @@ public class Move : MonoBehaviour, IHear
             StartCoroutine(ShootRoutine());//If the enemy can see the player
         }
     }
+    
+    
     private IEnumerator ShootRoutine()
     {
         //Debug.Log("Enter Shootroutine");
@@ -80,7 +76,10 @@ public class Move : MonoBehaviour, IHear
             //animator.SetBool("Shoot", false);
             yield break;
         }
+           
+    
     }
+
     public void NormalPath()
     {
         agent.stoppingDistance = 1f;
@@ -101,6 +100,7 @@ public class Move : MonoBehaviour, IHear
                 MoveBack = true;
         }
     }
+
     public void Shooting()
     {
         //Debug.Log("Enter Shooting");
@@ -108,12 +108,6 @@ public class Move : MonoBehaviour, IHear
         //animator.SetBool("Shoot", true);
         agent.SetDestination(player.position);
         enemyGun.Shoot();
-        if (agent.remainingDistance <= agent.stoppingDistance)
-            agent.isStopped = true;
-        else
-            agent.isStopped = false;
+        agent.isStopped = agent.remainingDistance <= agent.stoppingDistance;
     }
-
-    
-
 }

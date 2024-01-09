@@ -1207,7 +1207,7 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: -1.41, z: 0}
+    m_Position: {x: 0, y: 0.04, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
     m_Scale: {x: 0.5, y: 0.5, z: 0.5}
     placementMode: 0
@@ -5528,8 +5528,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4dc90615bba8ed4282acc9d6c130e4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 50
-  angle: 86
+  radius: 30
+  angle: 90
   player: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -5580,7 +5580,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7070917446260935382, guid: fb3a9b7e84197684795d75f01cf01def, type: 2}
   m_audioClip: {fileID: 8300000, guid: 947719fd38845824ba3638af9d8e4e54, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -5676,7 +5676,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7070917446260935382, guid: fb3a9b7e84197684795d75f01cf01def, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8f268095f67575b44b10ea19a4482b2c, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

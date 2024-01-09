@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerEvent : MonoBehaviour
 {
     public GameObject _object;
+    public PlayerData _data;
     private void Update()
     {
         // This is a debug event. Remove in final release!
         if(Input.GetKeyDown(KeyCode.F))
         {
-            _object.transform.SetPositionAndRotation(transform.position,transform.rotation);
+            _data.Damage(_data.GetMaxHealth());
         }
     }
 

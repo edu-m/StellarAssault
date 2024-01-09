@@ -13,6 +13,7 @@ public class NewBehaviourScript : Editor
         float angleOffset = 20f;
         EnemyFieldOfView fov = (EnemyFieldOfView)target;
         Handles.color=Color.white;
+#if false
         Handles.DrawWireArc(fov.transform.position + new Vector3(0,angleOffset,0), Vector3.up, Vector3.forward, 360, fov.radius);
         Handles.DrawWireArc(fov.transform.position + new Vector3(0, -angleOffset, 0), Vector3.up, Vector3.forward, 360, fov.radius);
 
@@ -47,6 +48,7 @@ public class NewBehaviourScript : Editor
             Handles.color = Color.green;
             Handles.DrawLine(fov.transform.position, fov.player.transform.position);
         }
+#endif
     }
 
     private Vector3 DirectionFromAngle(float eulerY,float angleInDegrees)
