@@ -45,7 +45,10 @@ public class PlayerData : MonoBehaviour, IDamageable
             health += amount;
         else health = maxHealth;
     }
-    public void StartAgain() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    public void StartAgain() { 
+        MusicManager.directMode = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); 
+    }
 
     public void Damage(int damage)
     {
