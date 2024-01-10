@@ -8,6 +8,8 @@ public class WaveSpawner : MonoBehaviour
     public Wave[] waves;
     private int currentWaveIndex = 0;
     public Transform spawnPoint;
+    public float timeToNextWave;
+    public float relaxTime;
     private void Awake()
     {
         Instance = this;
@@ -17,28 +19,49 @@ public class WaveSpawner : MonoBehaviour
     {
         for(int i = 0; i < waves.Length; i++)
         {
-            waves[i].enemiesLeft = waves[i].enemies.Length;
-
+            waves[i].enemiesLeft = waves[i].enemies.Length; //The number of enemies left of a wave
+            //is initially equal to the size of the array of enemies of the wave
         }
+
+        StartCoroutine(SpawnWaveRoutine());
     }
-
     
-
-
     // Update is called once per frame
     void Update()
     {
+        
+
        
     }
 
+    public int GetCurrentWaveIndex() => currentWaveIndex;
+
+    private IEnumerator SpawnWaveRoutine()
+    {
+        SpawnWave();
+        yield return new WaitForSeconds(timeToNextWave + relaxTime);
+    }
+    
     public void SpawnWave()
     {
-        for(int i = 0; i < waves[currentWaveIndex].enemies.Length; i++)
+        if (waves[currentWaveIndex].enemiesLeft == 0)
         {
-            Enemy enemy = Instantiate(waves[currentWaveIndex].enemies[i],spawnPoint.position,spawnPoint.rotation);
-            enemy.transform.SetParent(transform); //WaveSpawner object is the parent of the enemy
-
+            currentWaveIndex++;
         }
+
+        if (currentWaveIndex >= waves.Length)
+        {
+            Debug.Log("You survived every wave!");
+            return;
+        }
+
+
+        for (int i = 0; i < waves[currentWaveIndex].enemies.Length; i++)
+            {
+               Enemy enemy = Instantiate(waves[currentWaveIndex].enemies[i], spawnPoint.position, spawnPoint.rotation);
+               enemy.transform.SetParent(transform); //WaveSpawner object is the parent of the enemy
+
+            }
     }
 }
 
@@ -46,7 +69,6 @@ public class WaveSpawner : MonoBehaviour
 public class Wave
 {
     public Enemy[] enemies;
-    public float timeToNextWave;
     [HideInInspector] public int enemiesLeft;
 
     

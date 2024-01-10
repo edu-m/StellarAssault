@@ -336,7 +336,6 @@ GameObject:
   - component: {fileID: 2178413142875291974}
   - component: {fileID: 1702461055600020307}
   - component: {fileID: 1891288974822458045}
-  - component: {fileID: 4794241429330946428}
   - component: {fileID: 3552701546780587397}
   - component: {fileID: 6832407362174252132}
   - component: {fileID: 819683553598062445}
@@ -344,7 +343,7 @@ GameObject:
   - component: {fileID: 3026045516155544664}
   - component: {fileID: 8510806051736727529}
   - component: {fileID: 6252111947753842580}
-  - component: {fileID: -2544059572316570514}
+  - component: {fileID: 2120633089068910335}
   m_Layer: 0
   m_Name: 'ThirdLevelEnemySoldierFinal '
   m_TagString: Enemy
@@ -5293,19 +5292,6 @@ CapsuleCollider:
   m_Height: 2.66
   m_Direction: 1
   m_Center: {x: 0, y: 1.12, z: 0}
---- !u!114 &4794241429330946428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537598200663240239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e68ea3e5cf4d5d84a8efc7a0a8834946, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
 --- !u!114 &3552701546780587397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5581,7 +5567,7 @@ MonoBehaviour:
   enemySoldier: {fileID: 6537598200663240239}
   normalSpeed: 0.2
   alarmSpeed: 1
---- !u!114 &-2544059572316570514
+--- !u!114 &2120633089068910335
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5593,7 +5579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcf1701dbdcab34889faa77d14693ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 6537598200663240239}
+  health: 100
 --- !u!1 &7198324904445262007
 GameObject:
   m_ObjectHideFlags: 0

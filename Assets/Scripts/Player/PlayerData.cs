@@ -50,7 +50,7 @@ public class PlayerData : MonoBehaviour, IDamageable
     public void Damage(int damage)
     {
         damage = (int)Mathf.Ceil(damage * (0.33f * (PlayerPrefs.GetInt("Difficulty") + 1)));
-        Debug.Log("Damage is " + damage);
+        //Debug.Log("Damage is " + damage);
         health -= damage;
         lifeBar.value = health;
         if (health <= 0)
