@@ -11,6 +11,8 @@ public class ThirdLevelEnemyData : MonoBehaviour, IDamageable
     private ParticleSystem ps;
     private NavMeshAgent agent;
     [SerializeField] public float health;
+    [SerializeField] public List<GameObject> powerUps;
+    GameObject powerUp;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class ThirdLevelEnemyData : MonoBehaviour, IDamageable
         //ps.gameObject.SetActive(false);
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
+   
     }
     private void Start()
     {
@@ -47,7 +50,12 @@ public class ThirdLevelEnemyData : MonoBehaviour, IDamageable
         //ps.gameObject.SetActive(true);
         ps.Play();
         yield return new WaitForSeconds(0.1f);
-        waveSpawner.waves[waveSpawner.GetCurrentWaveIndex()].enemiesLeft--; 
+        waveSpawner.waves[waveSpawner.GetCurrentWaveIndex()].enemiesLeft--;
+        if(Random.Range(0f,1f) <= 1f)
+        {
+            powerUp = powerUps[(int)Random.Range(0, 2)];
+           Instantiate(powerUp, transform.position, transform.rotation);
+        }
         Destroy(gameObject);
     }
 

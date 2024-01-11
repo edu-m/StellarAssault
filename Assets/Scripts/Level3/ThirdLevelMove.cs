@@ -42,7 +42,7 @@ public class ThirdLevelMove : MonoBehaviour
     }
     private IEnumerator ShootRoutine()
     {
-        Shooting();
+        //Shooting();
         if (!EnemyFieldOfView.canSeePlayer)
             yield break;
     }

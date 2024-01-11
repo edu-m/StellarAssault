@@ -5563,6 +5563,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  powerUps:
+  - {fileID: 169952, guid: 805cafb79e290cc43a12a69dcdbd81cc, type: 3}
+  - {fileID: 169952, guid: 1154fb6d3ec95ba49a7b069675e60e61, type: 3}
 --- !u!114 &-6957046404825472264
 MonoBehaviour:
   m_ObjectHideFlags: 0
