@@ -25,6 +25,7 @@ public class ThirdLevelEnemyData : MonoBehaviour, IDamageable
         waveSpawner = GetComponentInParent<WaveSpawner>();
     }
 
+    public float GetHealth() => health;
     public void Damage(int damage)
     {
         health -= damage;
@@ -36,6 +37,7 @@ public class ThirdLevelEnemyData : MonoBehaviour, IDamageable
     {
         Debug.Log("Death Event");
         agent.isStopped = true;
+        //Add possible power-up spawn
         StartCoroutine(DeathAnimationFade());
     }
     protected  IEnumerator DeathAnimationFade()

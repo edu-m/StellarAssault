@@ -15,12 +15,12 @@ public class ThirdLevelEnemyGun : MonoBehaviour
     [SerializeField] private GunSounds gunSounds;
     public GameObject m_shotPrefab;
     public Transform player;
-    private EnemyData enemyData;
+    private ThirdLevelEnemyData enemyData;
 
     private void Start()
     {
         player = GameObject.Find("Player").transform;
-        enemyData = GetComponent<EnemyData>();
+        enemyData = GetComponent<ThirdLevelEnemyData>();
         gunSound = GetComponent<GunSounds>();
     }
 
