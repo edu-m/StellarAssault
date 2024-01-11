@@ -74,7 +74,7 @@ public class WaveSpawner : MonoBehaviour
             {   
                 for (int i = 0; i < waves[currentWaveIndex].enemies.Length; i++)
                 {
-                    Enemy enemy = Instantiate(waves[currentWaveIndex].enemies[i], spawnPoint.position, spawnPoint.rotation);
+                    ThirdLevelEnemyData enemy = Instantiate(waves[currentWaveIndex].enemies[i], spawnPoint.position, spawnPoint.rotation);
                     enemy.transform.SetParent(transform); //WaveSpawner object is the parent of the enemy
                     yield return new WaitForSeconds(waves[currentWaveIndex].spawnWaveInterval);
                 }
@@ -115,7 +115,7 @@ public class WaveSpawner : MonoBehaviour
     [System.Serializable]
     public class Wave
     {
-        public Enemy[] enemies;
+        public ThirdLevelEnemyData[] enemies;
         [HideInInspector] public int enemiesLeft;
         //public float timeToNextWave;
         public float spawnWaveInterval;

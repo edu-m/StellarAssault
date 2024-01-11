@@ -10,12 +10,12 @@ public class ThirdLevelMove : MonoBehaviour
 {
     [SerializeField] NavMeshAgent agent;
     public Transform player;
-    EnemyGun enemyGun;
+    ThirdLevelEnemyGun enemyGun;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        enemyGun= GetComponent<EnemyGun>();
+        enemyGun= GetComponent<ThirdLevelEnemyGun>();
     }
 
     private void Start()

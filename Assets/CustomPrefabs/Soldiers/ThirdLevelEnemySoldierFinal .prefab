@@ -337,13 +337,13 @@ GameObject:
   - component: {fileID: 1702461055600020307}
   - component: {fileID: 1891288974822458045}
   - component: {fileID: 3552701546780587397}
-  - component: {fileID: 6832407362174252132}
   - component: {fileID: 819683553598062445}
   - component: {fileID: 3621068813809469214}
   - component: {fileID: 3026045516155544664}
   - component: {fileID: 8510806051736727529}
   - component: {fileID: 6252111947753842580}
   - component: {fileID: 2120633089068910335}
+  - component: {fileID: -6957046404825472264}
   m_Layer: 0
   m_Name: 'ThirdLevelEnemySoldierFinal '
   m_TagString: Enemy
@@ -5313,23 +5313,6 @@ MonoBehaviour:
   obstructionMask:
     serializedVersion: 2
     m_Bits: 520
---- !u!114 &6832407362174252132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537598200663240239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1dd8adf6692308949aa1c94ca1229b24, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gunData: {fileID: 11400000, guid: 22a089773df7e4d4c83ea32822f9159b, type: 2}
-  muzzle: {fileID: 1107013514677441671}
-  gunSounds: {fileID: 819683553598062445}
-  m_shotPrefab: {fileID: 136330, guid: 9a0c3383523899643a8d0661cfaca4e4, type: 3}
-  player: {fileID: 0}
 --- !u!114 &819683553598062445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5579,7 +5562,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcf1701dbdcab34889faa77d14693ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 10
+--- !u!114 &-6957046404825472264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6537598200663240239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c64d1ca6e76056439ec95ccd91ac6b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: 22a089773df7e4d4c83ea32822f9159b, type: 2}
+  muzzle: {fileID: 1107013514677441671}
+  gunSounds: {fileID: 819683553598062445}
+  m_shotPrefab: {fileID: 136330, guid: 9a0c3383523899643a8d0661cfaca4e4, type: 3}
+  player: {fileID: 0}
 --- !u!1 &7198324904445262007
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,13 +21,14 @@ public class EnemyData : MonoBehaviour, IDamageable
     public void Damage(int damage)
     {
         health -= damage;
+        Debug.Log("Enemy damaged, health is " + health);
         if (health <= 0)
             DeathEvent();
     }
 
     public float GetHealth() => health;
 
-    IEnumerator DeathAnimationFade()
+    protected IEnumerator DeathAnimationFade()
     {
         animator.SetBool("Dead", true);
         yield return new WaitForSeconds(5f);
@@ -40,6 +41,7 @@ public class EnemyData : MonoBehaviour, IDamageable
 
     public void DeathEvent()
     {
+        Debug.Log("Death Event");
         agent.isStopped = true;
         StartCoroutine(DeathAnimationFade());
     }
