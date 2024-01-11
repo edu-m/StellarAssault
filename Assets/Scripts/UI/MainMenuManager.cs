@@ -98,12 +98,19 @@ public class MainMenuManager : MonoBehaviour
         scores=FileHandler.ReadListFromJSON<Score>("scoreBox");
         foreach(Score score in scores)
         {
-            if (!score.playerScoreMode)
-                scoreText.text = scoreText.text + score.playerName + " " + score.playerScore + " Level " +
-                score.playerLevel + " Difficulty " + score.playerDifficulty + " Stealth Mode" + "\n";
+            if(score.playerDifficulty != -1)
+            {
+                if (!score.playerScoreMode)
+                    scoreText.text = scoreText.text + score.playerName + " " + score.playerScore + " Level " +
+                    score.playerLevel + " Difficulty " + score.playerDifficulty + " Stealth Mode" + "\n";
+                else
+                    scoreText.text = scoreText.text + score.playerName + " " + score.playerScore + " Level " +
+                     score.playerLevel + " Difficulty " + score.playerDifficulty + " Direct Mode" + "\n";
+            }
             else
                 scoreText.text = scoreText.text + score.playerName + " " + score.playerScore + " Level " +
-                 score.playerLevel + " Difficulty " + score.playerDifficulty + " Direct Mode" + "\n";
+                     score.playerLevel + "\n";
+
         }
     }
     public void ToMenu()

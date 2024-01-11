@@ -92,4 +92,17 @@ public class ScoreManager : MonoBehaviour
         //Debug.Log("Direct Mode Score " + globalActualScore);
         outputActualScore.text = System.Convert.ToString(globalActualScore);
     }
+
+    public void SaveToList()
+    {
+        ScoreManager.Instance.scores = FileHandler.ReadListFromJSON<Score>("scoreBox");
+        ScoreManager.Instance.scores.Add(new Score(PlayerPrefs.GetString("PlayerName"),
+        ScoreManager.Instance.GetGlobalActualScore(), PlayerPrefs.GetInt("ActualLevel"),
+        PlayerPrefs.GetInt("Difficulty"), Move.seeAndSeekPlayer));
+
+        ScoreManager.Instance.scores.Sort();
+        FileHandler.SaveToJSON<Score>(ScoreManager.Instance.scores, "scoreBox");
+        Debug.Log("Saved");
+
+    }
 }
