@@ -51,7 +51,7 @@ public class ThirdLevelEnemyData : MonoBehaviour, IDamageable
         ps.Play();
         yield return new WaitForSeconds(0.1f);
         waveSpawner.waves[waveSpawner.GetCurrentWaveIndex()].enemiesLeft--;
-        if(Random.Range(0f,1f) <= 1f)
+        if(Random.Range(0f,1f) <= 0.1f)
         {
             powerUp = powerUps[(int)Random.Range(0, 2)];
            Instantiate(powerUp, transform.position, transform.rotation);
