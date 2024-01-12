@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,10 +21,16 @@ public class WaveSpawner : MonoBehaviour
     public List<Score> scores;
     public GameObject endGameCanvas;
     GameObject gun;
+    public TMP_Text waveTimer;
+    public TMP_Text waveEnemiesAlive;
+    public TMP_Text currentWave;
+    int seconds;
+    int minutes;
     private void Awake()
     {
         Instance = this;
         gun = GameObject.Find("Gun");
+      
     }
     private void Start()
     {
@@ -42,12 +49,22 @@ public class WaveSpawner : MonoBehaviour
         if (!waveFinished) //Time elapsed logic
         {
             timeElapsed += Time.deltaTime;
+            seconds = (int)timeElapsed % 60;
+            minutes = (int)(timeElapsed / 60) % 60;
+            waveTimer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+
         }
         else
+        {
             timeElapsed = 0f;
+            waveTimer.text = "Relax Time 20 seconds";
+        }
+           
+
+        waveEnemiesAlive.text = waves[currentWaveIndex % 4].enemiesLeft.ToString();
 
         Debug.Log("Time elapsed " + timeElapsed);
-        if (currentWaveIndex != 4 && waves[currentWaveIndex].enemiesLeft <= 0 && !waveScoreSetted) //End level and score logic
+        if (SetScore() && !waveScoreSetted) //End level and score logic
         {
             timeRemainedToNextWave = timeToNextWave - timeElapsed;
             waveScore += timeRemainedToNextWave * 1000;
@@ -55,16 +72,17 @@ public class WaveSpawner : MonoBehaviour
             Debug.Log("Actual wave score " + waveScore);
             
         }
-        /*else
+        else
         {
-            if(waveFinished) //Wave time is elapsed but there's some enemy alive
+            if(waveFinished && waves[currentWaveIndex].enemiesLeft > 0) //Wave time is elapsed but there's some enemy alive
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
             
-        }*/
+        }
     }
 
+    bool SetScore() => currentWaveIndex != 4 && waves[currentWaveIndex].enemiesLeft <= 0;
     public int GetCurrentWaveIndex() => currentWaveIndex;
 
     private IEnumerator SpawnWaveRoutine()
@@ -75,7 +93,9 @@ public class WaveSpawner : MonoBehaviour
             waveScoreSetted = false;
 
             if (currentWaveIndex < waves.Length)
-            {   
+            {
+                currentWave.text = (currentWaveIndex + 1).ToString();
+
                 for (int i = 0; i < waves[currentWaveIndex].enemies.Length; i++)
                 {
                     ThirdLevelEnemyData enemy = Instantiate(waves[currentWaveIndex].enemies[i], spawnPoint.position, spawnPoint.rotation);
@@ -84,8 +104,10 @@ public class WaveSpawner : MonoBehaviour
                 }
               yield return new WaitForSeconds(timeToNextWave - (waves[currentWaveIndex].spawnWaveInterval * waves[currentWaveIndex].enemies.Length));
                 waveFinished = true;
-              yield return new WaitForSeconds(relaxTime);
-                currentWaveIndex++;
+              if(currentWaveIndex != 3) 
+                yield return new WaitForSeconds(relaxTime);
+                
+              currentWaveIndex++;
             }
             else
             {
