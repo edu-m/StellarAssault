@@ -6,24 +6,21 @@ using UnityEditor.Build.Player;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
-public class Move : MonoBehaviour, IHear
+public class Move : AbstractMove
 {
-    [SerializeField] NavMeshAgent agent;
     public Transform pointA;
     public Transform pointB;
     private bool MoveBack;
     public static bool playerShoots;
-    public Transform player;
     public static bool seeAndSeekPlayer;
-    EnemyGun enemyGun;
 
-    private void Awake()
+    protected override void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        enemyGun= GetComponent<EnemyGun>();
+        enemyGun = GetComponent<EnemyGun>();
     }
 
-    private void Start()
+    protected override void Start()
     {
         player = GameObject.Find("Player").transform;
         playerShoots = false;
@@ -31,7 +28,9 @@ public class Move : MonoBehaviour, IHear
         EnemyFieldOfView.canSeePlayer = false;
     }
 
-    public void Update() => ChangeEnemyPath();
+    public override void RespondToSound() => playerShoots = true;
+
+    public void Update() => EnemyPath();
 
     public static bool DirectMode()
     {
@@ -41,31 +40,23 @@ public class Move : MonoBehaviour, IHear
         MusicManager.directMode = true;
         return true;
     }
-    public void RespondToSound(Sound shotSound) => playerShoots = true;
-    public void ChangeEnemyPath()
+    
+    protected override void EnemyPath()
     {
         if (!DirectMode() && !seeAndSeekPlayer) //If an enemy has never seen the player and we're not in direct mode
         {//Normal path
-            
             NormalPath();
         }
         else if (!EnemyFieldOfView.canSeePlayer)
         {
             //Debug.Log("Run to the player");
             agent.SetDestination(player.position); //If the enemy no longer sees the player, he will follow him
-        
         }
         else
         {
             seeAndSeekPlayer = true;//The first time an enemy sees the player, he will no longer return to stealth mode
             StartCoroutine(ShootRoutine());//If the enemy can see the player
         }
-    }
-    private IEnumerator ShootRoutine()
-    {
-        Shooting();
-        if (!EnemyFieldOfView.canSeePlayer)
-            yield break;
     }
 
     public void NormalPath()
@@ -89,11 +80,5 @@ public class Move : MonoBehaviour, IHear
         }
     }
 
-    public void Shooting()
-    {
-        agent.stoppingDistance = 5f;
-        agent.SetDestination(player.position);
-        enemyGun.Shoot();
-        agent.isStopped = agent.remainingDistance <= agent.stoppingDistance;
-    }
+   
 }

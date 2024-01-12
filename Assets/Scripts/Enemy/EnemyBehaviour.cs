@@ -4,42 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyBehaviour : MonoBehaviour 
+public class EnemyBehaviour : AbstractEnemyBehaviour
 {
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] GameObject enemySoldier;
-    [SerializeField] float normalSpeed;
-    [SerializeField] float alarmSpeed;
-    Animator animator;
-    // Start is called before the first frame update
-    private void Awake()
+    protected override void BehaviourControl()
     {
-        agent= GetComponent<NavMeshAgent>();
-    }
-
-    void Start()
-    {
-        animator = enemySoldier.GetComponent<Animator>();
-        StartCoroutine(SpeedRoutine());
-    }
-
-   
-    private IEnumerator SpeedRoutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.2f);
-            ChangeSpeed();
-        }
-    }
-
-    private void ChangeSpeed()
-    {
-        if (agent.isStopped)
-        {
-            animator.SetFloat("Speed", 0f);
-            return;
-        }
         if (!Move.DirectMode() && !Move.seeAndSeekPlayer)
             animator.SetFloat("Speed", normalSpeed);
         else if (!EnemyFieldOfView.canSeePlayer)
@@ -47,5 +15,4 @@ public class EnemyBehaviour : MonoBehaviour
         else
             animator.SetFloat("Speed", normalSpeed);//If he can see him, he will walk and shoots
     }
-
 }

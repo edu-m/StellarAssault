@@ -5,13 +5,12 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-
-    [SerializeField] GameObject door;
     Animator animator;
     // Start is called before the first frame update
     void Start()
     {
-        animator = door.GetComponent<Animator>();    
+        animator = GetComponent<Animator>();
+        animator.SetBool("character_nearby", false);
     }
 
     // Update is called once per frame
