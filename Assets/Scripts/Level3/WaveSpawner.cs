@@ -17,13 +17,17 @@ public class WaveSpawner : MonoBehaviour
     float timeRemainedToNextWave;
     bool waveFinished;
     bool waveScoreSetted;
+    public List<Score> scores;
+    public GameObject endGameCanvas;
+    GameObject gun;
     private void Awake()
     {
         Instance = this;
+        gun = GameObject.Find("Gun");
     }
     private void Start()
     {
-        //waveFinished = false;
+        endGameCanvas.SetActive(false);
         for (int i = 0; i < waves.Length; i++)
         {
             waves[i].enemiesLeft = waves[i].enemies.Length; //The number of enemies left of a wave
@@ -43,7 +47,7 @@ public class WaveSpawner : MonoBehaviour
             timeElapsed = 0f;
 
         Debug.Log("Time elapsed " + timeElapsed);
-        if (waves[currentWaveIndex].enemiesLeft <= 0 && !waveScoreSetted) //End level and score logic
+        if (currentWaveIndex != 4 && waves[currentWaveIndex].enemiesLeft <= 0 && !waveScoreSetted) //End level and score logic
         {
             timeRemainedToNextWave = timeToNextWave - timeElapsed;
             waveScore += timeRemainedToNextWave * 1000;
@@ -92,7 +96,12 @@ public class WaveSpawner : MonoBehaviour
                     waveScore = 1000;
                 }
                 Debug.Log("Your third level score is " + waveScore);
+                Time.timeScale = 0f;
                 SaveToList();
+                PlayerPrefs.SetInt("GameCompleted", 1);
+                Cursor.lockState = CursorLockMode.None;
+                gun.SetActive(false);
+                endGameCanvas.SetActive(true);
                 yield break;
             }
         }
@@ -100,15 +109,21 @@ public class WaveSpawner : MonoBehaviour
 
     public void SaveToList()
     {
-        ScoreManager.Instance.scores = FileHandler.ReadListFromJSON<Score>("scoreBox");
-        ScoreManager.Instance.scores.Add(new Score(PlayerPrefs.GetString("PlayerName"),
+        scores = FileHandler.ReadListFromJSON<Score>("scoreBox");
+        scores.Add(new Score(PlayerPrefs.GetString("PlayerName"),
         (int)waveScore, PlayerPrefs.GetInt("ActualLevel"),
         -1, Move.seeAndSeekPlayer));
 
-        ScoreManager.Instance.scores.Sort();
-        FileHandler.SaveToJSON<Score>(ScoreManager.Instance.scores, "scoreBox");
+        scores.Sort();
+        FileHandler.SaveToJSON<Score>(scores, "scoreBox");
         Debug.Log("Saved");
 
+    }
+
+    public void GoToMainMenu()
+    {   
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(0);
     }
 }
 
@@ -117,7 +132,6 @@ public class WaveSpawner : MonoBehaviour
     {
         public ThirdLevelEnemyData[] enemies;
         [HideInInspector] public int enemiesLeft;
-        //public float timeToNextWave;
         public float spawnWaveInterval;
 
 
