@@ -14,8 +14,8 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 1, g: 1, b: 1, a: 1}
   m_FogMode: 3
   m_FogDensity: 0.01
   m_LinearFogStart: 0
@@ -1144,10 +1144,10 @@ RectTransform:
   - {fileID: 760148041}
   m_Father: {fileID: 187446791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -25}
-  m_SizeDelta: {x: 50, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &124958018
 MonoBehaviour:
@@ -1455,7 +1455,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 257.97, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &187446792
 MonoBehaviour:
@@ -9256,7 +9256,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0.85
     gravitySource: 0
-    maxNumParticles: 1000
+    maxNumParticles: 3076
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 1
@@ -15009,10 +15009,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 187446791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 158.985, y: -25}
-  m_SizeDelta: {x: 187.97, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1428820578
 MonoBehaviour:
@@ -16064,53 +16064,12 @@ MonoBehaviour:
   - enemies:
     - {fileID: 2120633089068910335, guid: 3b13d58ff71223145bbdf40f83013973, type: 3}
     - {fileID: 2120633089068910335, guid: 3b13d58ff71223145bbdf40f83013973, type: 3}
-    - {fileID: 2120633089068910335, guid: 3b13d58ff71223145bbdf40f83013973, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
     enemiesLeft: 0
-    spawnWaveInterval: 20
-  - enemies:
-    - {fileID: 2120633089068910335, guid: 3b13d58ff71223145bbdf40f83013973, type: 3}
-    - {fileID: 2120633089068910335, guid: 3b13d58ff71223145bbdf40f83013973, type: 3}
-    - {fileID: 2120633089068910335, guid: 3b13d58ff71223145bbdf40f83013973, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    enemiesLeft: 0
-    spawnWaveInterval: 10
-  - enemies:
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: d209603cfb9bbd04abd2183fca1e2e2f, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    enemiesLeft: 0
-    spawnWaveInterval: 10
-  - enemies:
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    - {fileID: 2120633089068910335, guid: a9720b02985e1f0439dc14f04afa040e, type: 3}
-    enemiesLeft: 0
-    spawnWaveInterval: 10
+    spawnWaveInterval: 0
   spawnPoint: {fileID: 2129968461}
-  timeToNextWave: 120
-  relaxTime: 20
-  waveScore: 0
+  timeToNextWave: 50
+  relaxTime: 30
+  waveScore: 1000
   scores: []
   endGameCanvas: {fileID: 1688550324}
   waveTimer: {fileID: 815787060}
@@ -16809,7 +16768,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1688550325
 RectTransform:
   m_ObjectHideFlags: 0

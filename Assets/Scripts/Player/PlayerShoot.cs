@@ -9,14 +9,8 @@ public class PlayerShoot : MonoBehaviour
 
     public static Action shootInput;
     public static Action reloadInput;
-    private Animator animator;
 
     [SerializeField] private KeyCode reloadKey = KeyCode.R;
-
-    private void Start()
-    {
-        animator = GameObject.Find("PlayerCharacter").GetComponent<Animator>();
-    }
 
     private void Update()
     {
@@ -26,11 +20,7 @@ public class PlayerShoot : MonoBehaviour
                 shootInput?.Invoke();
 
             if (Input.GetKeyDown(reloadKey))
-            {
-                //animator.SetBool("Reloading", true);
                 reloadInput?.Invoke();
-                //animator.SetBool("Reloading", false);
-            }
         }
 
     }

@@ -45,7 +45,13 @@ public class PlayerData : MonoBehaviour, IDamageable
             health += amount;
         else health = maxHealth;
     }
-    public void StartAgain() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    public void StartAgain()
+    {
+        PlayerShoot.shootInput -= Gun._instance.Shoot;
+        PlayerShoot.reloadInput -= Gun._instance.ShowUIElementReload;
+        PlayerShoot.reloadInput -= Gun._instance.StartReload;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     public void Damage(int damage)
     {

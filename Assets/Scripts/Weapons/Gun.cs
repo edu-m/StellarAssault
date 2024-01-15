@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Gun : MonoBehaviour
 {
-    private static Gun _instance;
+    public static Gun _instance;
     [Header("References")]
     [SerializeField] private GunData gunData;
     [SerializeField] private Transform muzzle;
@@ -87,8 +87,14 @@ public class Gun : MonoBehaviour
 
     private bool CanShoot() => !gunData.isReloading && timeSinceLastShot > 1f / (gunData.fireRate / 60f) && gunData.currentAmmo > 0;
 
-    private void Shoot()
+    public void Shoot()
     {
+        if (PlayerShoot.shootInput == null)
+        {
+            PlayerShoot.shootInput += Shoot;
+            PlayerShoot.reloadInput += ShowUIElementReload;
+            PlayerShoot.reloadInput += StartReload;
+        }
         if (cameraPosMuzzle.IsUnityNull())
             cameraPosMuzzle = GameObject.Find("PlayerCam").transform;
         if (muzzle.IsUnityNull())
